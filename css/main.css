@@ -1785,7 +1785,7 @@ pre .javascript .function {
 
 .powered-info, .license-info, .vistor-info, .copyright {
   display: flex;
-} 
+}
 .powered-by, .storage-info, .site-uv, .copyright-year {
   width: 48%;
   text-align: right;
@@ -2685,7 +2685,7 @@ body {
     flex-direction: column;
     justify-content: center;
   }
-} 
+}
 
 @media (min-width: 768px) and (max-width: 991px) {
   .site-nav-toggle {
@@ -2834,13 +2834,13 @@ body {
   max-width: 200px;
   box-sizing: border-box;
   display: inline-block;
+  margin-top: 1px;
   margin-right: 0;
   margin-bottom: 0;
   padding: 0 5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  border-bottom: 1px solid #999;
 }
 @media (max-width: 767px) {
   .post-body {
@@ -2963,16 +2963,16 @@ body {
 }
 
 .article-copyright {
-  border: 1px dashed #e0e0e0; 
-  padding: 10px; 
+  border: 1px dashed #e0e0e0;
+  padding: 10px;
   font-size: 13px;
-  background-color: #fffeee; 
-  background-repeat: no-repeat; 
-  background-attachment: scroll; 
-  background-position: 1% 50%; 
-  -moz-background-size: auto auto; 
-  -moz-background-clip: -moz-initial; 
-  -moz-background-origin: -moz-initial; 
+  background-color: #fffeee;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: 1% 50%;
+  -moz-background-size: auto auto;
+  -moz-background-clip: -moz-initial;
+  -moz-background-origin: -moz-initial;
   -moz-background-inline-policy: -moz-initial;
 }
 
@@ -2995,7 +2995,7 @@ body {
 }
 
 .reward-qr-info {
-  width: 90%; 
+  width: 90%;
   text-align: center;
   margin-bottom: 10px;
 }
