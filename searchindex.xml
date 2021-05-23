@@ -1,4 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>最优二叉树和赫夫曼编码</title><url>https://yinan-hong.github.io/post/huffmantree/</url><categories><category>算法</category><category>数据结构</category></categories><tags><tag>最优二叉树</tag><tag>二叉树</tag><tag>算法</tag></tags><content type="html"> 节点的带全路径长度是指根节点到该节点的路径长度与节点权值的乘积。最优二叉树（赫夫曼树or哈夫曼树）是指带权路径和最小的二叉树。构建赫夫曼树时，要使带权路径和最小，需要遵循权重大的节点离根节点更近。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>关于我</title><url>https://yinan-hong.github.io/about.html</url><categories/><tags/><content type="html"> 年级 大二在读
+教育经历 深圳中学2019届
+深圳技术大学2023届物联网工程专业
+学习方向 C/C++后台开发
+游戏开发
+爱好 唱歌、弹琴、吉他、美剧、漫威（资深漫威粉）、王者荣耀
+梦想 世界和平
+小目标 去腾讯开发王者荣耀
+长得 很帅
+本站介绍 有一天心血来潮，想做个网站放放自己的作品和学习经历什么的，也方便我35岁失业后转行搞自媒体。于是五一捣鼓了一天弄出了这么个东西，感谢上一位优化这个主题的dalao慷慨开源。
+网站用到的技术 本站用的是一个叫Hugo的静态网页生成工具，据说是用Go语言写的，所以理论上比大家常用的一些Hexo之类的可能速度要快一点，但比较小众所以功能可能有些不太全，出了问题只能上英文网站查&hellip;
+网站主题用的是Next，很简洁很苹果，我很喜欢。Anyway，页面最下方有指向Hugo和next主题的链接，左侧sidebar有优化这个主题的github，有兴趣的朋友可以自行了解下。等我捣鼓明白了再写一篇关于制作个人主页的教程。
+关于我 我是万万没想到会学计算机方向的，我喜欢的是生物，但家里没矿学不起。因为高考考了个很尴尬的分，种种考虑下还是到了深技大的物联网专业。
+上大学之前我是完完全全没有接触过编程方面的知识的，硬要说有就是高中的电脑课教过c++，但那个课是教三样东西（另外两个是pr和产品设计），取成绩最好的两项算成绩。反正当时考试敲个算闰年的程序，我愣是一行都没敲出来，然后旁边的文科生朋友很快就写完了&hellip;. 所以说程序语言应该算语言学&hellip;
+Anyway&hellip; 我感觉学校对我们专业的定位不是很明确，然后需要花大量时间学硬件相关的课程，我按学校的学习进度应该会比同期的计算机专业的同学要慢上不少，而且乱上不少。我在学习的时候，时常会遇到一些比入门问题要难一点，但是也没难到哪里去的问题。周围很少有能一起讨论的同学，所以我总是会在一些很蠢的问题上卡很长时间。
+关于本站的文章 所以我打算写一些技术文章，记录一下学习过程中遇到过的比较难的知识or技术。然后这学期在上数据结构与算法，如果做到什么有意思的题目，或者我有什么清奇的思路，也会写一篇题解之类的文章。
+我目前的水平也就这样了，我会尽量把我搞懂了的东西写清楚，希望能帮到比我菜的同学。等以后我牛逼了一定会写更多有技术含量的文章来回馈开源社区！
+除了编程相关之外，我还会写一些键政文章。我觉得中国的教育缺失对学生社会责任感的培养，作为社会中的一个个体，我们应该承担自己的社会责任，要有推动社会进步的意识。我很幸运在深圳中学遇到了很多有思想，有担当的青年同学和教师。在ta们的影响下我开始关注时事，并乐于分享自己的思考。说白了就是，学什么都救不了中国人，所以我只能拿起手中的键盘&hellip;</content></entry><entry><title>最优二叉树和赫夫曼编码</title><url>https://yinan-hong.github.io/post/huffmantree/</url><categories><category>算法</category><category>数据结构</category></categories><tags><tag>最优二叉树</tag><tag>二叉树</tag><tag>算法</tag></tags><content type="html"> 节点的带权路径长度是指根节点到该节点的路径长度与节点权值的乘积。最优二叉树（赫夫曼树or哈夫曼树）是指带权路径和最小的二叉树。构建赫夫曼树时，要使带权路径和最小，需要遵循权重大的节点离根节点更近。
 构建赫夫曼树 有给定权值的n个节点：
 在n个节点中选出两个权值最小的节点，将两个节点组成一个二叉树，根结点的权值为左右子节点权值的和。
 将上一步的根节点放入剩下的节点中，进行 1 。
@@ -39,7 +56,7 @@ priority_queue&lt;int>q; 默认为数字（字典序）大的值在队首top，�
 priority_queue&lt;int, vector&lt;int>, greater&lt;int> >q; 表示数字（字典序）小的在队首
 版权声明：本文为CSDN博主「julia7_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/weixin_35093872/article/details/88055475
-AC代码 #include &lt;iostream>#include &lt;string>#include &lt;cstring>#include &lt;queue>#include &lt;map>using namespace std; const int maxn = 100; int main() { int t; cin >> t; while (t--) { string str; map&lt;char, int> mp; priority_queue&lt;int, vector&lt;int>, greater&lt;int> >q; cin >> str; int len = str.length(); for (int i = 0; i &lt; len; i++) { if (mp.find(str[i]) == mp.end()) { mp[str[i]] = 1; } else { mp[str[i]]++; } } for (map&lt;char, int>::iterator it = mp.begin(); it != mp.end(); it++) { q.push(it->second); } int ans = 0; while (q.size() != 1) { int a, b, temp; a = q.top(); q.pop(); b = q.top(); q.pop(); temp = a + b; ans += temp; q.push(temp); } cout &lt;&lt; ans &lt;&lt; endl; } return 0; }</content></entry><entry><title>二叉树从0到1</title><url>https://yinan-hong.github.io/post/binarytree/</url><categories><category>算法</category></categories><tags><tag>二叉树</tag><tag>算法</tag></tags><content type="html"> 本文介绍关于二叉树的一些基本概念，典型操作，和我做过的比较入门的算法题。所以本文比较适合初学算法的同学，或者用来快速复习什么的。如果是对二叉树的算法比较熟悉的同学，建议可以直接去刷相关的算法题。
+AC代码 #include &lt;iostream>#include &lt;string>#include &lt;cstring>#include &lt;queue>#include &lt;map>using namespace std; const int maxn = 100; int main() { int t; cin >> t; while (t--) { string str; map&lt;char, int> mp; priority_queue&lt;int, vector&lt;int>, greater&lt;int> >q; cin >> str; int len = str.length(); for (int i = 0; i &lt; len; i++) { if (mp.find(str[i]) == mp.end()) { mp[str[i]] = 1; } else { mp[str[i]]++; } } for (map&lt;char, int>::iterator it = mp.begin(); it != mp.end(); it++) { q.push(it->second); } int ans = 0; while (q.size() != 1) { int a, b, temp; a = q.top(); q.pop(); b = q.top(); q.pop(); temp = a + b; ans += temp; q.push(temp); } cout &lt;&lt; ans &lt;&lt; endl; } return 0; }</content></entry><entry><title>二叉树从0到1</title><url>https://yinan-hong.github.io/post/binarytree/</url><categories><category>算法</category><category>数据结构</category></categories><tags><tag>二叉树</tag><tag>算法</tag></tags><content type="html"> 本文介绍关于二叉树的一些基本概念，典型操作，和我做过的比较入门的算法题。所以本文比较适合初学算法的同学，或者用来快速复习什么的。如果是对二叉树的算法比较熟悉的同学，建议可以直接去刷相关的算法题。
 二叉树概念 二叉树就是每个节点最多有两个子节点的树。每个节点的内存大小包括【要存储的数据】、【指向子节点的两个指针】。
 需要了解的几个概念，图中Tree 1就是一般的二叉树，Tree 2是完全二叉树，Tree 3是满二叉树。完全二叉树除最下面一层，其余层的节点个数必须达到最大，最底层节点全部靠左排列。满二叉树则是所有层的结点个数都需达到最大，显然满二叉树都是完全二叉树。
 像上图的数据结构中，发现6、8、9号位置都没有存到数据，会有空间的浪费。而用完全二叉树存储就可以避免这样的问题。实际上所有的树结构都是可以转化成完全二叉树的。
@@ -226,19 +243,4 @@ To enable emoji globally, set enableEmoji to true in your site&rsquo;s configura
 馃檲 🙈 馃檳 🙉 馃檴 🙊
 The Emoji cheat sheet is a useful reference for emoji shorthand codes.
 N.B. The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.
-.emoji { font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols; }  </content></entry><entry><title>关于我</title><url>https://yinan-hong.github.io/about.html</url><categories/><tags/><content type="html"> TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO
-TODO Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-Hugo makes use of a variety of open source projects including:
-https://github.com/yuin/goldmark https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
-Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-Learn more and contribute on GitHub.</content></entry></search>
+.emoji { font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols; }  </content></entry></search>
