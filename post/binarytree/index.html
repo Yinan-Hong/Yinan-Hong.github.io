@@ -65,7 +65,7 @@
         cout <span style=color:#000;font-weight:700>&lt;&lt;</span> n<span style=color:#000;font-weight:700>-&gt;</span>data <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span>; <span style=color:#998;font-style:italic>//访问本节点数据
 </span><span style=color:#998;font-style:italic></span>    }
 }
-</code></pre></td></tr></table></div></div><h3 id=逐层遍历>逐层遍历</h3><p>逐层遍历的意思是从左到右访问每一层的每一个节点。还是上面那颗树，逐层输出就是ABCDEFGH。逐层输出要用到<strong>队列</strong>，每一层的节点会先被放入队列，访问每一个节点时，将子节点放入队尾。每次循环取出队首的节点，就能实现从上到下，从左到右访问所有节点。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</code></pre></td></tr></table></div></div><h3 id=逐层遍历>逐层遍历</h3><p>逐层遍历的意思是从左到右访问每一层的每一个节点。还是上面那棵树，逐层输出就是ABCDEFGH。逐层输出要用到<strong>队列</strong>，每一层的节点会先被放入队列，访问每一个节点时，将子节点放入队尾。每次循环取出队首的节点，就能实现从上到下，从左到右访问所有节点。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -688,7 +688,7 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 	}
 	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></td></tr></table></div></div><h3 id=求根到叶子结点路径上权值的和>求根到叶子结点路径上权值的和</h3><h4 id=题目描述-1>题目描述</h4><p>给定一颗二叉树的逻辑结构（先序遍历的结果，空树用字符‘0’表示，例如AB0C00D00），建立该二叉树的二叉链式存储结构
+</code></pre></td></tr></table></div></div><h3 id=求根到叶子结点路径上权值的和>求根到叶子结点路径上权值的和</h3><h4 id=题目描述-1>题目描述</h4><p>给定一棵二叉树的逻辑结构（先序遍历的结果，空树用字符‘0’表示，例如AB0C00D00），建立该二叉树的二叉链式存储结构
 二叉树的每个结点都有一个权值，从根结点到每个叶子结点将形成一条路径，每条路径的权值等于路径上所有结点的权值和。编程求出二叉树的最大路径权值。如下图所示，共有4个叶子即有4条路径</p><p>路径1权值=5 + 4 + 11 + 7 = 27 路径2权值=5 + 4 + 11 + 2 = 22
 路径3权值=5 + 8 + 13 = 26 路径4权值=5 + 8 + 4 + 1 = 18
 可计算出最大路径权值是27</p><p>该树输入的先序遍历结果为ABCD00E000FG00H0I00，各结点权值为：
