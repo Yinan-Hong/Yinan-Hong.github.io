@@ -25,155 +25,155 @@
   </p><h2 id=b树的构成和结构>B树的构成和结构</h2><p><img src=../btreePic/Snipaste_2021-06-07_15-42-05.png alt=Snipaste_2021-06-07_15-42-05>
   
   </p><h3 id=b树的节点构成>B树的节点构成</h3><p>上图展示的就是一颗b树。我们先来看看b树<strong>节点</strong>的组成。</p><p>b树的节点包含以下内容：</p><ol><li>本节点存放的<font style=background:Lavender>数据（关键字）数组</font>（图中蓝底部分），编号从1开始</li><li>指向子节点的指针数组（图中白底部分）</li><li>指向父节点的指针（图中未标出）</li></ol><p>  
-下图红框框 框出来的就是<strong>一个节点</strong>。构建b树前需要先给出b树的<strong>阶数m</strong>，一个节点中最多有<strong>m-1个数据</strong>和<strong>m个子树</strong>。为了方便代码实现，我们规定<strong>关键字的编号从1开始，子节点的编号从0开始</strong>。</p><p><img src=../btreePic/Snipaste_2021-06-07_15-46-54.png alt=Snipaste_2021-06-07_15-46-54></p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BTNode</span> {
-<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
-	<span style=color:#078;font-weight:700>int</span> keyNum; <span style=color:#09f;font-style:italic>// 关键字个数
-</span><span style=color:#09f;font-style:italic></span>	BTNode<span style=color:#555>*</span> parent; <span style=color:#09f;font-style:italic>// 指向父节点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span><span style=color:#555>*</span> keys; <span style=color:#09f;font-style:italic>// 关键字数组，编号从1开始
-</span><span style=color:#09f;font-style:italic></span>	BTNode<span style=color:#555>**</span> ptr; <span style=color:#09f;font-style:italic>// 子树指针数组
-</span><span style=color:#09f;font-style:italic></span>	BTNode();
-	<span style=color:#555>~</span>BTNode();
+下图红框框 框出来的就是<strong>一个节点</strong>。构建b树前需要先给出b树的<strong>阶数m</strong>，一个节点中最多有<strong>m-1个数据</strong>和<strong>m个子树</strong>。为了方便代码实现，我们规定<strong>关键字的编号从1开始，子节点的编号从0开始</strong>。</p><p><img src=../btreePic/Snipaste_2021-06-07_15-46-54.png alt=Snipaste_2021-06-07_15-46-54></p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>BTNode</span> {
+<span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
+	<span style=color:#458;font-weight:700>int</span> keyNum; <span style=color:#998;font-style:italic>// 关键字个数
+</span><span style=color:#998;font-style:italic></span>	BTNode<span style=color:#000;font-weight:700>*</span> parent; <span style=color:#998;font-style:italic>// 指向父节点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span><span style=color:#000;font-weight:700>*</span> keys; <span style=color:#998;font-style:italic>// 关键字数组，编号从1开始
+</span><span style=color:#998;font-style:italic></span>	BTNode<span style=color:#000;font-weight:700>**</span> ptr; <span style=color:#998;font-style:italic>// 子树指针数组
+</span><span style=color:#998;font-style:italic></span>	BTNode();
+	<span style=color:#000;font-weight:700>~</span>BTNode();
 };
-</code></pre></div><p>  </p><h3 id=b树的数据存储结构>B树的数据存储结构</h3><p><img src=../btreePic/Snipaste_2021-06-07_15-56-12.png alt=Snipaste_2021-06-07_15-56-12></p><p>我们看存放<strong>32</strong>这个数据的节点。在<strong>节点内</strong>，数据从左到右是<strong>由小到大排列</strong>。</p><p>在<strong>32</strong>这个数据<strong>左侧的子树</strong>，其包含的所有数据都<strong>小于32</strong>，对于<strong>右侧的子树</strong>，其包含的数据都<strong>大于32</strong>。</p><p>  </p><h2 id=b树的操作>B树的操作</h2><p>B树常见的操作有，搜索，插入，分裂，删除/* todo */。</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BTree</span> {
-<span style=color:#069;font-weight:700>private</span><span style=color:#555>:</span>
-	BTNode<span style=color:#555>*</span> root;
-     <span style=color:#09f;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insert</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> i, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> ap);
-     <span style=color:#09f;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>search</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k);
-     <span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>split</span>(BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> s, BTNode<span style=color:#555>*&amp;</span> ap);
-     <span style=color:#09f;font-style:italic>// 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>newRoot</span>(BTNode<span style=color:#555>*&amp;</span> t, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> x, BTNode<span style=color:#555>*</span> ap);
-     <span style=color:#09f;font-style:italic>// 在结点t的子结点q的key[i]与key[i+1]之间插入k
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insertBT</span>(BTNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> i);
-	Result <span style=color:#c0f>searchBT</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k); <span style=color:#09f;font-style:italic>// 在结点t中查找k
-</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
+</code></pre></div><p>  </p><h3 id=b树的数据存储结构>B树的数据存储结构</h3><p><img src=../btreePic/Snipaste_2021-06-07_15-56-12.png alt=Snipaste_2021-06-07_15-56-12></p><p>我们看存放<strong>32</strong>这个数据的节点。在<strong>节点内</strong>，数据从左到右是<strong>由小到大排列</strong>。</p><p>在<strong>32</strong>这个数据<strong>左侧的子树</strong>，其包含的所有数据都<strong>小于32</strong>，对于<strong>右侧的子树</strong>，其包含的数据都<strong>大于32</strong>。</p><p>  </p><h2 id=b树的操作>B树的操作</h2><p>B树常见的操作有，搜索，插入，分裂，删除/* todo */。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>BTree</span> {
+<span style=color:#000;font-weight:700>private</span><span style=color:#000;font-weight:700>:</span>
+	BTNode<span style=color:#000;font-weight:700>*</span> root;
+     <span style=color:#998;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insert</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> i, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> ap);
+     <span style=color:#998;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span> <span style=color:#900;font-weight:700>search</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k);
+     <span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>split</span>(BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> s, BTNode<span style=color:#000;font-weight:700>*&amp;</span> ap);
+     <span style=color:#998;font-style:italic>// 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>newRoot</span>(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> x, BTNode<span style=color:#000;font-weight:700>*</span> ap);
+     <span style=color:#998;font-style:italic>// 在结点t的子结点q的key[i]与key[i+1]之间插入k
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insertBT</span>(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> i);
+	Result <span style=color:#900;font-weight:700>searchBT</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k); <span style=color:#998;font-style:italic>// 在结点t中查找k
+</span><span style=color:#998;font-style:italic></span><span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
 	BTree();
-	<span style=color:#555>~</span>BTree();
-	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insertBT</span>(<span style=color:#078;font-weight:700>int</span> key); <span style=color:#09f;font-style:italic>// B-树插入操作
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>searchBT</span>(<span style=color:#078;font-weight:700>int</span> key); <span style=color:#09f;font-style:italic>// B-树查找操作
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>levelOrder</span>(); <span style=color:#09f;font-style:italic>// B-树层次遍历
-</span><span style=color:#09f;font-style:italic></span>};
-</code></pre></div><p>  </p><h3 id=手撸一颗b树>手撸一颗B树</h3><p>讲具体的操作之前我们先<strong>手动实现</strong>一颗B树，这样方便大家理解B树的数据分布。B树的构建其实就是使用插入操作不断插入数据。给出一组数据<strong>21, 45, 65, 25, 31, 52, 55</strong>，构建<strong>3阶</strong>b树。</p><p>前面提到过，m阶b树的节点最多包含<strong>m-1个数据和m个子树</strong>，所以前三个数据只需按顺序插入到第一个节点。</p><p><img src=../btreePic/Snipaste_2021-06-07_16-25-00.png alt=Snipaste_2021-06-07_16-25-00 style=zoom:50%></p><p>插入第三个数据后，节点的数据超过了m-1=2个，这时候就需要对这个节点进行<strong>分裂操作</strong>。分裂的位置我们取<strong>m/2然后向上取整</strong>（可以有不同的取法），在这里就是第2个数据<strong>45</strong>。</p><p>分裂操作：</p><ol><li>新建节点，将<font style=background:LightPink>分裂位置</font>右侧的全部数据移入新节点</li><li>分裂位置右侧的<font style=background:BlanchedAlmond>子树指针</font>指向这个新结点</li><li>将<font style=background:LightPink>分裂位置</font>的数据和<font style=background:BlanchedAlmond>子树指针</font>插入父节点，如果没有父节点则新建根节点</li></ol><p><img src=../btreePic/Snipaste_2021-06-07_16-48-26.png alt=Snipaste_2021-06-07_16-48-26 style=zoom:50%></p><p>  </p><p>继续插入下一个数据<strong>25</strong>，从根节点进行<strong>搜索操作</strong>：</p><p><strong>45 > 21</strong>，进入左子树搜索，<strong>21 &lt; 25</strong>，插入在右侧。同样地插入数据<strong>31</strong>。</p><p><img src=../btreePic/Snipaste_2021-06-07_16-52-58.png alt=Snipaste_2021-06-07_16-52-58 style=zoom:50%></p><p>  </p><p>发现节点中数据超过2个，进行分裂，同样的分裂操作。</p><ol><li>新建节点，将<font style=background:LightPink>分裂位置</font>右侧的全部数据移入新节点</li><li>分裂位置右侧的<font style=background:BlanchedAlmond>子树指针</font>指向这个新结点</li><li>将<font style=background:LightPink>分裂位置</font>的数据和<font style=background:BlanchedAlmond>子树指针</font>插入父节点，如果没有父节点则新建根节点</li></ol><p><img src=../btreePic/Snipaste_2021-06-07_16-57-50.png alt=Snipaste_2021-06-07_16-57-50 style=zoom:50%></p><p>同样的道理插入最后两个数据，最后得到的数据结构是下图这样的（省略最后一层的空指针）。</p><p><img src=../btreePic/Snipaste_2021-06-07_17-05-32.png alt=Snipaste_2021-06-07_17-05-32 style=zoom:50%></p><p>  </p><p>各位可以尝试手撸一下这个样例巩固一下。4阶b树，按顺序插入45, 24, 53, 90, 46, 47。</p><p>结果是这样的。</p><p><img src=../btreePic/Snipaste_2021-06-07_17-15-58.png alt=Snipaste_2021-06-07_17-15-58 style=zoom:50%></p><p>  </p><h3 id=搜索操作>搜索操作</h3><p>传入根节点t和需要查询的关键字k，返回类Result。</p><p>tag为0或1表示是否查询成功。如果查询成功，pt为k所在的节点，i为k在pt中的位置。如果查询失败，pt为k需要插入的节点，i + 1为k插入的位置。</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>Result</span> {
-<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
-	BTNode<span style=color:#555>*</span> pt; <span style=color:#09f;font-style:italic>// 指向找到的结点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span> i;
-	<span style=color:#078;font-weight:700>int</span> tag;
-	Result(BTNode<span style=color:#555>*</span> p, <span style=color:#078;font-weight:700>int</span> m, <span style=color:#078;font-weight:700>int</span> t) {
-		pt <span style=color:#555>=</span> p;		i <span style=color:#555>=</span> m;		tag <span style=color:#555>=</span> t;
+	<span style=color:#000;font-weight:700>~</span>BTree();
+	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insertBT</span>(<span style=color:#458;font-weight:700>int</span> key); <span style=color:#998;font-style:italic>// B-树插入操作
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>searchBT</span>(<span style=color:#458;font-weight:700>int</span> key); <span style=color:#998;font-style:italic>// B-树查找操作
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>levelOrder</span>(); <span style=color:#998;font-style:italic>// B-树层次遍历
+</span><span style=color:#998;font-style:italic></span>};
+</code></pre></div><p>  </p><h3 id=手撸一颗b树>手撸一颗B树</h3><p>讲具体的操作之前我们先<strong>手动实现</strong>一颗B树，这样方便大家理解B树的数据分布。B树的构建其实就是使用插入操作不断插入数据。给出一组数据<strong>21, 45, 65, 25, 31, 52, 55</strong>，构建<strong>3阶</strong>b树。</p><p>前面提到过，m阶b树的节点最多包含<strong>m-1个数据和m个子树</strong>，所以前三个数据只需按顺序插入到第一个节点。</p><p><img src=../btreePic/Snipaste_2021-06-07_16-25-00.png alt=Snipaste_2021-06-07_16-25-00 style=zoom:50%></p><p>插入第三个数据后，节点的数据超过了m-1=2个，这时候就需要对这个节点进行<strong>分裂操作</strong>。分裂的位置我们取<strong>m/2然后向上取整</strong>（可以有不同的取法），在这里就是第2个数据<strong>45</strong>。</p><p>分裂操作：</p><ol><li>新建节点，将<font style=background:LightPink>分裂位置</font>右侧的全部数据移入新节点</li><li>分裂位置右侧的<font style=background:BlanchedAlmond>子树指针</font>指向这个新结点</li><li>将<font style=background:LightPink>分裂位置</font>的数据和<font style=background:BlanchedAlmond>子树指针</font>插入父节点，如果没有父节点则新建根节点</li></ol><p><img src=../btreePic/Snipaste_2021-06-07_16-48-26.png alt=Snipaste_2021-06-07_16-48-26 style=zoom:50%></p><p>  </p><p>继续插入下一个数据<strong>25</strong>，从根节点进行<strong>搜索操作</strong>：</p><p><strong>45 > 21</strong>，进入左子树搜索，<strong>21 &lt; 25</strong>，插入在右侧。同样地插入数据<strong>31</strong>。</p><p><img src=../btreePic/Snipaste_2021-06-07_16-52-58.png alt=Snipaste_2021-06-07_16-52-58 style=zoom:50%></p><p>  </p><p>发现节点中数据超过2个，进行分裂，同样的分裂操作。</p><ol><li>新建节点，将<font style=background:LightPink>分裂位置</font>右侧的全部数据移入新节点</li><li>分裂位置右侧的<font style=background:BlanchedAlmond>子树指针</font>指向这个新结点</li><li>将<font style=background:LightPink>分裂位置</font>的数据和<font style=background:BlanchedAlmond>子树指针</font>插入父节点，如果没有父节点则新建根节点</li></ol><p><img src=../btreePic/Snipaste_2021-06-07_16-57-50.png alt=Snipaste_2021-06-07_16-57-50 style=zoom:50%></p><p>同样的道理插入最后两个数据，最后得到的数据结构是下图这样的（省略最后一层的空指针）。</p><p><img src=../btreePic/Snipaste_2021-06-07_17-05-32.png alt=Snipaste_2021-06-07_17-05-32 style=zoom:50%></p><p>  </p><p>各位可以尝试手撸一下这个样例巩固一下。4阶b树，按顺序插入45, 24, 53, 90, 46, 47。</p><p>结果是这样的。</p><p><img src=../btreePic/Snipaste_2021-06-07_17-15-58.png alt=Snipaste_2021-06-07_17-15-58 style=zoom:50%></p><p>  </p><h3 id=搜索操作>搜索操作</h3><p>传入根节点t和需要查询的关键字k，返回类Result。</p><p>tag为0或1表示是否查询成功。如果查询成功，pt为k所在的节点，i为k在pt中的位置。如果查询失败，pt为k需要插入的节点，i + 1为k插入的位置。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>Result</span> {
+<span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
+	BTNode<span style=color:#000;font-weight:700>*</span> pt; <span style=color:#998;font-style:italic>// 指向找到的结点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span> i;
+	<span style=color:#458;font-weight:700>int</span> tag;
+	Result(BTNode<span style=color:#000;font-weight:700>*</span> p, <span style=color:#458;font-weight:700>int</span> m, <span style=color:#458;font-weight:700>int</span> t) {
+		pt <span style=color:#000;font-weight:700>=</span> p;		i <span style=color:#000;font-weight:700>=</span> m;		tag <span style=color:#000;font-weight:700>=</span> t;
 	}
-	Result(<span style=color:#069;font-weight:700>const</span> Result<span style=color:#555>&amp;</span> R) {
-		pt <span style=color:#555>=</span> R.pt;	i <span style=color:#555>=</span> R.i;	tag <span style=color:#555>=</span> R.tag;
+	Result(<span style=color:#000;font-weight:700>const</span> Result<span style=color:#000;font-weight:700>&amp;</span> R) {
+		pt <span style=color:#000;font-weight:700>=</span> R.pt;	i <span style=color:#000;font-weight:700>=</span> R.i;	tag <span style=color:#000;font-weight:700>=</span> R.tag;
 	}
-	<span style=color:#555>~</span>Result() {
-		pt <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;	i <span style=color:#555>=</span> <span style=color:#f60>0</span>; 	tag <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+	<span style=color:#000;font-weight:700>~</span>Result() {
+		pt <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;	i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>; 	tag <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
 	}
 };
-</code></pre></div><p>从根结点开始搜索关键字k</p><ol><li>如果节点中存在>=k的关键字，则返回该关键字的前一个位置i - 1<ul><li>如果这个关键字==k，则查询成功，返回节点信息</li><li>如果这个关键字>k，查询失败，进入关键字左侧的子树搜寻。如果子树不存在，则返回k的插入位置。</li></ul></li><li>如果节点中不存在>=k的关键字，说明k比节点中所有关键字都大，所以返回最后一个子树指针的位置，进入最右侧子树搜索</li></ol><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#09f;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>int</span> BTree<span style=color:#555>::</span>search(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k) {
-	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>1</span>; i <span style=color:#555>&lt;=</span> t<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>)
-		<span style=color:#069;font-weight:700>if</span> (t<span style=color:#555>-&gt;</span>keys[i] <span style=color:#555>&gt;=</span> k)
-			<span style=color:#069;font-weight:700>return</span> i <span style=color:#555>-</span> <span style=color:#f60>1</span>;
-    <span style=color:#09f;font-style:italic>//找到关键字&gt;=k，如果=则找到，如果&gt;则在左边的子树找，或在i处插入
-</span><span style=color:#09f;font-style:italic></span>
-	<span style=color:#069;font-weight:700>return</span> t<span style=color:#555>-&gt;</span>keyNum;<span style=color:#09f;font-style:italic>//所有关键字都&lt;k，去最右侧边的子树找，或在keyNum处插入
-</span><span style=color:#09f;font-style:italic></span>}
+</code></pre></div><p>从根结点开始搜索关键字k</p><ol><li>如果节点中存在>=k的关键字，则返回该关键字的前一个位置i - 1<ul><li>如果这个关键字==k，则查询成功，返回节点信息</li><li>如果这个关键字>k，查询失败，进入关键字左侧的子树搜寻。如果子树不存在，则返回k的插入位置。</li></ul></li><li>如果节点中不存在>=k的关键字，说明k比节点中所有关键字都大，所以返回最后一个子树指针的位置，进入最右侧子树搜索</li></ol><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#998;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>int</span> BTree<span style=color:#000;font-weight:700>::</span>search(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k) {
+	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>; i <span style=color:#000;font-weight:700>&lt;=</span> t<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>)
+		<span style=color:#000;font-weight:700>if</span> (t<span style=color:#000;font-weight:700>-&gt;</span>keys[i] <span style=color:#000;font-weight:700>&gt;=</span> k)
+			<span style=color:#000;font-weight:700>return</span> i <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>;
+    <span style=color:#998;font-style:italic>//找到关键字&gt;=k，如果=则找到，如果&gt;则在左边的子树找，或在i处插入
+</span><span style=color:#998;font-style:italic></span>
+	<span style=color:#000;font-weight:700>return</span> t<span style=color:#000;font-weight:700>-&gt;</span>keyNum;<span style=color:#998;font-style:italic>//所有关键字都&lt;k，去最右侧边的子树找，或在keyNum处插入
+</span><span style=color:#998;font-style:italic></span>}
 
-<span style=color:#09f;font-style:italic>// 遍历所有节点查询key关键字
-</span><span style=color:#09f;font-style:italic></span>Result BTree<span style=color:#555>::</span>searchBT(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k) {
-	BTNode<span style=color:#555>*</span> p <span style=color:#555>=</span> t, <span style=color:#555>*</span> q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>; <span style=color:#09f;font-style:italic>// p指向当前查询节点，q指向当前节点的父节点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>bool</span> found <span style=color:#555>=</span> <span style=color:#366>false</span>;
-	<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>;
-	<span style=color:#069;font-weight:700>while</span> (p <span style=color:#555>&amp;&amp;</span> <span style=color:#555>!</span>found) {
-		i <span style=color:#555>=</span> search(p, k);	<span style=color:#09f;font-style:italic>// 在当前节点中查找k
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (p<span style=color:#555>-&gt;</span>keys[i <span style=color:#555>+</span> <span style=color:#f60>1</span>] <span style=color:#555>==</span> k)
-			found <span style=color:#555>=</span> <span style=color:#366>true</span>;
-		<span style=color:#069;font-weight:700>else</span> {
-			q <span style=color:#555>=</span> p;
-			p <span style=color:#555>=</span> p<span style=color:#555>-&gt;</span>ptr[i];	<span style=color:#09f;font-style:italic>// 转到下一个节点
-</span><span style=color:#09f;font-style:italic></span>		}
+<span style=color:#998;font-style:italic>// 遍历所有节点查询key关键字
+</span><span style=color:#998;font-style:italic></span>Result BTree<span style=color:#000;font-weight:700>::</span>searchBT(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k) {
+	BTNode<span style=color:#000;font-weight:700>*</span> p <span style=color:#000;font-weight:700>=</span> t, <span style=color:#000;font-weight:700>*</span> q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>; <span style=color:#998;font-style:italic>// p指向当前查询节点，q指向当前节点的父节点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>bool</span> found <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>false</span>;
+	<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
+	<span style=color:#000;font-weight:700>while</span> (p <span style=color:#000;font-weight:700>&amp;&amp;</span> <span style=color:#000;font-weight:700>!</span>found) {
+		i <span style=color:#000;font-weight:700>=</span> search(p, k);	<span style=color:#998;font-style:italic>// 在当前节点中查找k
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#000;font-weight:700>if</span> (p<span style=color:#000;font-weight:700>-&gt;</span>keys[i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>] <span style=color:#000;font-weight:700>==</span> k)
+			found <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
+		<span style=color:#000;font-weight:700>else</span> {
+			q <span style=color:#000;font-weight:700>=</span> p;
+			p <span style=color:#000;font-weight:700>=</span> p<span style=color:#000;font-weight:700>-&gt;</span>ptr[i];	<span style=color:#998;font-style:italic>// 转到下一个节点
+</span><span style=color:#998;font-style:italic></span>		}
 	}
-	<span style=color:#069;font-weight:700>if</span> (found)
-		<span style=color:#069;font-weight:700>return</span> Result(p, i <span style=color:#555>+</span> <span style=color:#f60>1</span>, <span style=color:#f60>1</span>);	<span style=color:#09f;font-style:italic>// 查找成功，返回节点信息
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>else</span>
-		<span style=color:#069;font-weight:700>return</span> <span style=color:#c0f>Result</span>(q, i, <span style=color:#f60>0</span>);	<span style=color:#09f;font-style:italic>// 查找失败，返回插入位置信息
-</span><span style=color:#09f;font-style:italic></span>}
-</code></pre></div><p>  </p><h3 id=插入和分裂操作>插入和分裂操作</h3><p>传入key，在树中搜索key，如果返回的rusult.tag == 1，则关键字已存在，如果result.tag == 0，则执行插入操作。</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#09f;font-style:italic>// B-树插入操作
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>insertBT(<span style=color:#078;font-weight:700>int</span> key) {
-	Result r <span style=color:#555>=</span> searchBT(root, key);
-	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>r.tag) {
+	<span style=color:#000;font-weight:700>if</span> (found)
+		<span style=color:#000;font-weight:700>return</span> Result(p, i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>, <span style=color:#099>1</span>);	<span style=color:#998;font-style:italic>// 查找成功，返回节点信息
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>else</span>
+		<span style=color:#000;font-weight:700>return</span> <span style=color:#900;font-weight:700>Result</span>(q, i, <span style=color:#099>0</span>);	<span style=color:#998;font-style:italic>// 查找失败，返回插入位置信息
+</span><span style=color:#998;font-style:italic></span>}
+</code></pre></div><p>  </p><h3 id=插入和分裂操作>插入和分裂操作</h3><p>传入key，在树中搜索key，如果返回的rusult.tag == 1，则关键字已存在，如果result.tag == 0，则执行插入操作。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#998;font-style:italic>// B-树插入操作
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>insertBT(<span style=color:#458;font-weight:700>int</span> key) {
+	Result r <span style=color:#000;font-weight:700>=</span> searchBT(root, key);
+	<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>r.tag) {
 		insertBT(root, key, r.pt, r.i);
 	}
 }
-</code></pre></div><p>将key插入节点的对应位置</p><ol><li>插入后节点关键字数量 &lt; m - 1 ，插入成功，退出</li><li>插入后节点关键字数量 > m - 1 ，执行分裂操作<ul><li>当前节点存在父节点，执行分裂操作③的插入父节点</li><li>当前节点不存在父节点，执行分裂操作③的创建新根节点</li></ul></li></ol><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>insertBT(BTNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> i) {
-	<span style=color:#078;font-weight:700>int</span> x <span style=color:#555>=</span> k;
-	BTNode<span style=color:#555>*</span> ap <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
-	<span style=color:#078;font-weight:700>bool</span> finished <span style=color:#555>=</span> <span style=color:#366>false</span>;
-	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>q) {	<span style=color:#09f;font-style:italic>// 创建第一个节点
-</span><span style=color:#09f;font-style:italic></span>		q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-		q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-		q<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>] <span style=color:#555>=</span> k;
-		<span style=color:#069;font-weight:700>this</span><span style=color:#555>-&gt;</span>root <span style=color:#555>=</span> q;
-		<span style=color:#069;font-weight:700>return</span>;
+</code></pre></div><p>将key插入节点的对应位置</p><ol><li>插入后节点关键字数量 &lt; m - 1 ，插入成功，退出</li><li>插入后节点关键字数量 > m - 1 ，执行分裂操作<ul><li>当前节点存在父节点，执行分裂操作③的插入父节点</li><li>当前节点不存在父节点，执行分裂操作③的创建新根节点</li></ul></li></ol><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>insertBT(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> i) {
+	<span style=color:#458;font-weight:700>int</span> x <span style=color:#000;font-weight:700>=</span> k;
+	BTNode<span style=color:#000;font-weight:700>*</span> ap <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
+	<span style=color:#458;font-weight:700>bool</span> finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>false</span>;
+	<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>q) {	<span style=color:#998;font-style:italic>// 创建第一个节点
+</span><span style=color:#998;font-style:italic></span>		q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+		q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+		q<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> k;
+		<span style=color:#000;font-weight:700>this</span><span style=color:#000;font-weight:700>-&gt;</span>root <span style=color:#000;font-weight:700>=</span> q;
+		<span style=color:#000;font-weight:700>return</span>;
 	}
-	<span style=color:#069;font-weight:700>while</span> (<span style=color:#555>!</span>finished) {
-		insert(q, i, x, ap);	<span style=color:#09f;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>&lt;</span> m)	<span style=color:#09f;font-style:italic>// 插入完成（keys从1开始，所以判断keyNum &lt; m）
-</span><span style=color:#09f;font-style:italic></span>			finished <span style=color:#555>=</span> <span style=color:#366>true</span>;
-		<span style=color:#069;font-weight:700>else</span> {	<span style=color:#09f;font-style:italic>// 分裂节点*q
-</span><span style=color:#09f;font-style:italic></span>			<span style=color:#078;font-weight:700>int</span> s <span style=color:#555>=</span> (m <span style=color:#555>+</span> <span style=color:#f60>1</span>) <span style=color:#555>/</span> <span style=color:#f60>2</span>;	<span style=color:#09f;font-style:italic>// 向上取整
-</span><span style=color:#09f;font-style:italic></span>			split(q, s, ap);	<span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>			x <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>keys[s];
-			q <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>parent;
-			<span style=color:#069;font-weight:700>if</span> (q)	<span style=color:#09f;font-style:italic>// 将ap插入父节点对应位置
-</span><span style=color:#09f;font-style:italic></span>				i <span style=color:#555>=</span> search(q, x);	<span style=color:#09f;font-style:italic>//查找ap在父节点的插入位置
-</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>else</span> {
-				newRoot(t, q, x, ap);	<span style=color:#09f;font-style:italic>//创建新的根节点
-</span><span style=color:#09f;font-style:italic></span>				finished <span style=color:#555>=</span> <span style=color:#366>true</span>;
+	<span style=color:#000;font-weight:700>while</span> (<span style=color:#000;font-weight:700>!</span>finished) {
+		insert(q, i, x, ap);	<span style=color:#998;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#000;font-weight:700>if</span> (q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>&lt;</span> m)	<span style=color:#998;font-style:italic>// 插入完成（keys从1开始，所以判断keyNum &lt; m）
+</span><span style=color:#998;font-style:italic></span>			finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
+		<span style=color:#000;font-weight:700>else</span> {	<span style=color:#998;font-style:italic>// 分裂节点*q
+</span><span style=color:#998;font-style:italic></span>			<span style=color:#458;font-weight:700>int</span> s <span style=color:#000;font-weight:700>=</span> (m <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>) <span style=color:#000;font-weight:700>/</span> <span style=color:#099>2</span>;	<span style=color:#998;font-style:italic>// 向上取整
+</span><span style=color:#998;font-style:italic></span>			split(q, s, ap);	<span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>			x <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keys[s];
+			q <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>parent;
+			<span style=color:#000;font-weight:700>if</span> (q)	<span style=color:#998;font-style:italic>// 将ap插入父节点对应位置
+</span><span style=color:#998;font-style:italic></span>				i <span style=color:#000;font-weight:700>=</span> search(q, x);	<span style=color:#998;font-style:italic>//查找ap在父节点的插入位置
+</span><span style=color:#998;font-style:italic></span>			<span style=color:#000;font-weight:700>else</span> {
+				newRoot(t, q, x, ap);	<span style=color:#998;font-style:italic>//创建新的根节点
+</span><span style=color:#998;font-style:italic></span>				finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
 			}
 		}
 	}
 }
 
-<span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>split(BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> s, BTNode<span style=color:#555>*&amp;</span> ap) {
-	ap <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-	<span style=color:#078;font-weight:700>int</span> j <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-	<span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> s <span style=color:#555>+</span> <span style=color:#f60>1</span>; i <span style=color:#555>&lt;=</span> q<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>) {
-		ap<span style=color:#555>-&gt;</span>keys[j] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>keys[i];
-		ap<span style=color:#555>-&gt;</span>ptr[j] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>ptr[i];
-		j<span style=color:#555>++</span>;
+<span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>split(BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> s, BTNode<span style=color:#000;font-weight:700>*&amp;</span> ap) {
+	ap <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+	<span style=color:#458;font-weight:700>int</span> j <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+	<span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> s <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>; i <span style=color:#000;font-weight:700>&lt;=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>) {
+		ap<span style=color:#000;font-weight:700>-&gt;</span>keys[j] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keys[i];
+		ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[j] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>ptr[i];
+		j<span style=color:#000;font-weight:700>++</span>;
 	}
-	ap<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>0</span>] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>ptr[s];
-	ap<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> j <span style=color:#555>-</span> <span style=color:#f60>1</span>;
-	q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>-=</span> j;
-	ap<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>parent;
-	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>; i <span style=color:#555>&lt;=</span> ap<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>)
-		<span style=color:#069;font-weight:700>if</span> (ap<span style=color:#555>-&gt;</span>ptr[i])
-			ap<span style=color:#555>-&gt;</span>ptr[i]<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> ap;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>0</span>] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>ptr[s];
+	ap<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> j <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>-=</span> j;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>parent;
+	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>; i <span style=color:#000;font-weight:700>&lt;=</span> ap<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>)
+		<span style=color:#000;font-weight:700>if</span> (ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[i])
+			ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[i]<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> ap;
 }
 
-<span style=color:#09f;font-style:italic>// 生成含信息(t, x, ap)的新根结点t, 原t和 ap为子树指针
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>newRoot(BTNode<span style=color:#555>*&amp;</span> t, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> x, BTNode<span style=color:#555>*</span> ap) {
-	q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-	q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-	q<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>] <span style=color:#555>=</span> x;
-	q<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>0</span>] <span style=color:#555>=</span> t;
-	q<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>1</span>] <span style=color:#555>=</span> ap;
-	t<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q;
-	ap<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q;
-	<span style=color:#069;font-weight:700>this</span><span style=color:#555>-&gt;</span>root <span style=color:#555>=</span> q;
+<span style=color:#998;font-style:italic>// 生成含信息(t, x, ap)的新根结点t, 原t和 ap为子树指针
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>newRoot(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> x, BTNode<span style=color:#000;font-weight:700>*</span> ap) {
+	q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> x;
+	q<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>0</span>] <span style=color:#000;font-weight:700>=</span> t;
+	q<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> ap;
+	t<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q;
+	<span style=color:#000;font-weight:700>this</span><span style=color:#000;font-weight:700>-&gt;</span>root <span style=color:#000;font-weight:700>=</span> q;
 }
-</code></pre></div><p>  </p><h3 id=删除操作>删除操作</h3><p>todo</p><p>  </p><h2 id=完整代码和测试样例>完整代码和测试样例</h2><h4 id=输入>输入</h4><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>第一行输入t，表示有t个数据序列
+</code></pre></div><p>  </p><h3 id=删除操作>删除操作</h3><p>todo</p><p>  </p><h2 id=完整代码和测试样例>完整代码和测试样例</h2><h4 id=输入>输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>第一行输入t，表示有t个数据序列
 第二行输入m, 表示要构建m阶B-树
 第三行输入n，表示首个序列包含n个数据
 第四行输入n个数据，都是自然数且互不相同，数据之间用空格隔开
-</code></pre></div><h4 id=输出>输出</h4><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>输出B-树的关键字
+</code></pre></div><h4 id=输出>输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>输出B-树的关键字
 同一个结点的关键字之间用:间隔
 不同结点之间的关键字用一个空格间隔
 对B-树进行层次遍历可以得到。
-</code></pre></div><h4 id=样例输入>样例输入</h4><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
+</code></pre></div><h4 id=样例输入>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
 3
 3
 21 45 65
@@ -183,265 +183,265 @@
 4
 6
 45 24 53 90 46 47
-</code></pre></div><h4 id=样例输出>样例输出</h4><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>45 21 65
+</code></pre></div><h4 id=样例输出>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>45 21 65
 45 25 55 21 31 52 65
 45:47 24 46 53:90
-</code></pre></div><h4 id=代码示例>代码示例</h4><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#099>#include</span> <span style=color:#099>&lt;iostream&gt;</span><span style=color:#099>
-</span><span style=color:#099>#include</span> <span style=color:#099>&lt;queue&gt;</span><span style=color:#099>
-</span><span style=color:#099></span><span style=color:#069;font-weight:700>using</span> <span style=color:#069;font-weight:700>namespace</span> std;
+</code></pre></div><h4 id=代码示例>代码示例</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
 
-<span style=color:#078;font-weight:700>int</span> m;
+<span style=color:#458;font-weight:700>int</span> m;
 
-<span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BTNode</span> {
-<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
-	<span style=color:#078;font-weight:700>int</span> keyNum; <span style=color:#09f;font-style:italic>// 关键字个数
-</span><span style=color:#09f;font-style:italic></span>	BTNode<span style=color:#555>*</span> parent; <span style=color:#09f;font-style:italic>// 指向双亲结点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span><span style=color:#555>*</span> keys; <span style=color:#09f;font-style:italic>// 关键字向量
-</span><span style=color:#09f;font-style:italic></span>	BTNode<span style=color:#555>**</span> ptr; <span style=color:#09f;font-style:italic>// 子树指针向量
-</span><span style=color:#09f;font-style:italic></span>	BTNode() {
-		keyNum <span style=color:#555>=</span> <span style=color:#f60>0</span>;
-		parent <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
-		keys <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> <span style=color:#078;font-weight:700>int</span>[m <span style=color:#555>+</span> <span style=color:#f60>2</span>];
-		ptr <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode <span style=color:#555>*</span> [m <span style=color:#555>+</span> <span style=color:#f60>2</span>];
-		<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>; i <span style=color:#555>&lt;</span> m <span style=color:#555>+</span> <span style=color:#f60>2</span>; i<span style=color:#555>++</span>)
-			ptr[i] <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
+<span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>BTNode</span> {
+<span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
+	<span style=color:#458;font-weight:700>int</span> keyNum; <span style=color:#998;font-style:italic>// 关键字个数
+</span><span style=color:#998;font-style:italic></span>	BTNode<span style=color:#000;font-weight:700>*</span> parent; <span style=color:#998;font-style:italic>// 指向双亲结点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span><span style=color:#000;font-weight:700>*</span> keys; <span style=color:#998;font-style:italic>// 关键字向量
+</span><span style=color:#998;font-style:italic></span>	BTNode<span style=color:#000;font-weight:700>**</span> ptr; <span style=color:#998;font-style:italic>// 子树指针向量
+</span><span style=color:#998;font-style:italic></span>	BTNode() {
+		keyNum <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
+		parent <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
+		keys <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> <span style=color:#458;font-weight:700>int</span>[m <span style=color:#000;font-weight:700>+</span> <span style=color:#099>2</span>];
+		ptr <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode <span style=color:#000;font-weight:700>*</span> [m <span style=color:#000;font-weight:700>+</span> <span style=color:#099>2</span>];
+		<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>; i <span style=color:#000;font-weight:700>&lt;</span> m <span style=color:#000;font-weight:700>+</span> <span style=color:#099>2</span>; i<span style=color:#000;font-weight:700>++</span>)
+			ptr[i] <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
 	}
 
-	<span style=color:#555>~</span>BTNode() {
-		<span style=color:#069;font-weight:700>delete</span>[] keys;
-		<span style=color:#069;font-weight:700>delete</span>[] ptr;
-	}
-};
-
-<span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>Result</span> {
-<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
-	BTNode<span style=color:#555>*</span> pt; <span style=color:#09f;font-style:italic>// 指向找到的结点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span> i;
-	<span style=color:#078;font-weight:700>int</span> tag;
-	Result(BTNode<span style=color:#555>*</span> p, <span style=color:#078;font-weight:700>int</span> m, <span style=color:#078;font-weight:700>int</span> t) {
-		pt <span style=color:#555>=</span> p;
-		i <span style=color:#555>=</span> m;
-		tag <span style=color:#555>=</span> t;
-	}
-
-	Result(<span style=color:#069;font-weight:700>const</span> Result<span style=color:#555>&amp;</span> R) {
-		pt <span style=color:#555>=</span> R.pt;
-		i <span style=color:#555>=</span> R.i;
-		tag <span style=color:#555>=</span> R.tag;
-	}
-
-	<span style=color:#555>~</span>Result() {
-		pt <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
-		i <span style=color:#555>=</span> <span style=color:#f60>0</span>;
-		tag <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+	<span style=color:#000;font-weight:700>~</span>BTNode() {
+		<span style=color:#000;font-weight:700>delete</span>[] keys;
+		<span style=color:#000;font-weight:700>delete</span>[] ptr;
 	}
 };
 
-<span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BTree</span> {
-<span style=color:#069;font-weight:700>private</span><span style=color:#555>:</span>
-	BTNode<span style=color:#555>*</span> root;
-	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insert</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> i, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> ap); <span style=color:#09f;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>search</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k); <span style=color:#09f;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>split</span>(BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> s, BTNode<span style=color:#555>*&amp;</span> ap); <span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>newRoot</span>(BTNode<span style=color:#555>*&amp;</span> t, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> x, BTNode<span style=color:#555>*</span> ap); <span style=color:#09f;font-style:italic>// 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insertBT</span>(BTNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> i); <span style=color:#09f;font-style:italic>// 在结点t的子结点q的key[i]与key[i+1]之间插入k
-</span><span style=color:#09f;font-style:italic></span>	Result <span style=color:#c0f>searchBT</span>(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k); <span style=color:#09f;font-style:italic>// 在结点t中查找k
-</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
+<span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>Result</span> {
+<span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
+	BTNode<span style=color:#000;font-weight:700>*</span> pt; <span style=color:#998;font-style:italic>// 指向找到的结点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span> i;
+	<span style=color:#458;font-weight:700>int</span> tag;
+	Result(BTNode<span style=color:#000;font-weight:700>*</span> p, <span style=color:#458;font-weight:700>int</span> m, <span style=color:#458;font-weight:700>int</span> t) {
+		pt <span style=color:#000;font-weight:700>=</span> p;
+		i <span style=color:#000;font-weight:700>=</span> m;
+		tag <span style=color:#000;font-weight:700>=</span> t;
+	}
+
+	Result(<span style=color:#000;font-weight:700>const</span> Result<span style=color:#000;font-weight:700>&amp;</span> R) {
+		pt <span style=color:#000;font-weight:700>=</span> R.pt;
+		i <span style=color:#000;font-weight:700>=</span> R.i;
+		tag <span style=color:#000;font-weight:700>=</span> R.tag;
+	}
+
+	<span style=color:#000;font-weight:700>~</span>Result() {
+		pt <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
+		i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
+		tag <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
+	}
+};
+
+<span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>BTree</span> {
+<span style=color:#000;font-weight:700>private</span><span style=color:#000;font-weight:700>:</span>
+	BTNode<span style=color:#000;font-weight:700>*</span> root;
+	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insert</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> i, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> ap); <span style=color:#998;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>int</span> <span style=color:#900;font-weight:700>search</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k); <span style=color:#998;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>split</span>(BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> s, BTNode<span style=color:#000;font-weight:700>*&amp;</span> ap); <span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>newRoot</span>(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> x, BTNode<span style=color:#000;font-weight:700>*</span> ap); <span style=color:#998;font-style:italic>// 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insertBT</span>(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> i); <span style=color:#998;font-style:italic>// 在结点t的子结点q的key[i]与key[i+1]之间插入k
+</span><span style=color:#998;font-style:italic></span>	Result <span style=color:#900;font-weight:700>searchBT</span>(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k); <span style=color:#998;font-style:italic>// 在结点t中查找k
+</span><span style=color:#998;font-style:italic></span><span style=color:#000;font-weight:700>public</span><span style=color:#000;font-weight:700>:</span>
 	BTree();
-	<span style=color:#555>~</span>BTree();
-	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insertBT</span>(<span style=color:#078;font-weight:700>int</span> key); <span style=color:#09f;font-style:italic>// B-树插入操作
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>searchBT</span>(<span style=color:#078;font-weight:700>int</span> key); <span style=color:#09f;font-style:italic>// B-树查找操作
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>levelOrder</span>(); <span style=color:#09f;font-style:italic>// B-树层次遍历
-</span><span style=color:#09f;font-style:italic></span>};
+	<span style=color:#000;font-weight:700>~</span>BTree();
+	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>insertBT</span>(<span style=color:#458;font-weight:700>int</span> key); <span style=color:#998;font-style:italic>// B-树插入操作
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>searchBT</span>(<span style=color:#458;font-weight:700>int</span> key); <span style=color:#998;font-style:italic>// B-树查找操作
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>levelOrder</span>(); <span style=color:#998;font-style:italic>// B-树层次遍历
+</span><span style=color:#998;font-style:italic></span>};
 
-<span style=color:#09f;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>insert(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> i, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> ap) {
-	t<span style=color:#555>-&gt;</span>keyNum<span style=color:#555>++</span>;
-	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> j <span style=color:#555>=</span> t<span style=color:#555>-&gt;</span>keyNum; j <span style=color:#555>&gt;</span> i <span style=color:#555>+</span> <span style=color:#f60>1</span>; j<span style=color:#555>--</span>) {	<span style=color:#09f;font-style:italic>//把[i+1, keyNum]的数据后移一位
-</span><span style=color:#09f;font-style:italic></span>		t<span style=color:#555>-&gt;</span>keys[j] <span style=color:#555>=</span> t<span style=color:#555>-&gt;</span>keys[j <span style=color:#555>-</span> <span style=color:#f60>1</span>];
-		t<span style=color:#555>-&gt;</span>ptr[j] <span style=color:#555>=</span> t<span style=color:#555>-&gt;</span>ptr[j <span style=color:#555>-</span> <span style=color:#f60>1</span>];
+<span style=color:#998;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>insert(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> i, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> ap) {
+	t<span style=color:#000;font-weight:700>-&gt;</span>keyNum<span style=color:#000;font-weight:700>++</span>;
+	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> j <span style=color:#000;font-weight:700>=</span> t<span style=color:#000;font-weight:700>-&gt;</span>keyNum; j <span style=color:#000;font-weight:700>&gt;</span> i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>; j<span style=color:#000;font-weight:700>--</span>) {	<span style=color:#998;font-style:italic>//把[i+1, keyNum]的数据后移一位
+</span><span style=color:#998;font-style:italic></span>		t<span style=color:#000;font-weight:700>-&gt;</span>keys[j] <span style=color:#000;font-weight:700>=</span> t<span style=color:#000;font-weight:700>-&gt;</span>keys[j <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>];
+		t<span style=color:#000;font-weight:700>-&gt;</span>ptr[j] <span style=color:#000;font-weight:700>=</span> t<span style=color:#000;font-weight:700>-&gt;</span>ptr[j <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>];
 	}
-	t<span style=color:#555>-&gt;</span>keys[i <span style=color:#555>+</span> <span style=color:#f60>1</span>] <span style=color:#555>=</span> k;	<span style=color:#09f;font-style:italic>//插入数据
-</span><span style=color:#09f;font-style:italic></span>	t<span style=color:#555>-&gt;</span>ptr[i <span style=color:#555>+</span> <span style=color:#f60>1</span>] <span style=color:#555>=</span> ap;
+	t<span style=color:#000;font-weight:700>-&gt;</span>keys[i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> k;	<span style=color:#998;font-style:italic>//插入数据
+</span><span style=color:#998;font-style:italic></span>	t<span style=color:#000;font-weight:700>-&gt;</span>ptr[i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> ap;
 }
 
-<span style=color:#09f;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>int</span> BTree<span style=color:#555>::</span>search(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k) {
-	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>1</span>; i <span style=color:#555>&lt;=</span> t<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>)
-		<span style=color:#069;font-weight:700>if</span> (t<span style=color:#555>-&gt;</span>keys[i] <span style=color:#555>&gt;=</span> k)
-			<span style=color:#069;font-weight:700>return</span> i <span style=color:#555>-</span> <span style=color:#f60>1</span>;	<span style=color:#09f;font-style:italic>//找到关键字&gt;=k，如果=则找到，如果&gt;则在左边的子树找，或在i处插入
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>return</span> t<span style=color:#555>-&gt;</span>keyNum;	<span style=color:#09f;font-style:italic>//所有关键字都&lt;k，去最右侧边的子树找，或在keyNum处插入
-</span><span style=color:#09f;font-style:italic></span>}
+<span style=color:#998;font-style:italic>// 在p-&gt;key[1...keynum]中查找 k
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>int</span> BTree<span style=color:#000;font-weight:700>::</span>search(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k) {
+	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>; i <span style=color:#000;font-weight:700>&lt;=</span> t<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>)
+		<span style=color:#000;font-weight:700>if</span> (t<span style=color:#000;font-weight:700>-&gt;</span>keys[i] <span style=color:#000;font-weight:700>&gt;=</span> k)
+			<span style=color:#000;font-weight:700>return</span> i <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>;	<span style=color:#998;font-style:italic>//找到关键字&gt;=k，如果=则找到，如果&gt;则在左边的子树找，或在i处插入
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>return</span> t<span style=color:#000;font-weight:700>-&gt;</span>keyNum;	<span style=color:#998;font-style:italic>//所有关键字都&lt;k，去最右侧边的子树找，或在keyNum处插入
+</span><span style=color:#998;font-style:italic></span>}
 
-<span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>split(BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> s, BTNode<span style=color:#555>*&amp;</span> ap) {
-	ap <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-	<span style=color:#078;font-weight:700>int</span> j <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-	<span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> s <span style=color:#555>+</span> <span style=color:#f60>1</span>; i <span style=color:#555>&lt;=</span> q<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>) {
-		ap<span style=color:#555>-&gt;</span>keys[j] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>keys[i];
-		ap<span style=color:#555>-&gt;</span>ptr[j] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>ptr[i];
-		j<span style=color:#555>++</span>;
+<span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>split(BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> s, BTNode<span style=color:#000;font-weight:700>*&amp;</span> ap) {
+	ap <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+	<span style=color:#458;font-weight:700>int</span> j <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+	<span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> s <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>; i <span style=color:#000;font-weight:700>&lt;=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>) {
+		ap<span style=color:#000;font-weight:700>-&gt;</span>keys[j] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keys[i];
+		ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[j] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>ptr[i];
+		j<span style=color:#000;font-weight:700>++</span>;
 	}
-	ap<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>0</span>] <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>ptr[s];
-	ap<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> j <span style=color:#555>-</span> <span style=color:#f60>1</span>;
-	q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>-=</span> j;
-	ap<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>parent;
-	<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>; i <span style=color:#555>&lt;=</span> ap<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>)
-		<span style=color:#069;font-weight:700>if</span> (ap<span style=color:#555>-&gt;</span>ptr[i])
-			ap<span style=color:#555>-&gt;</span>ptr[i]<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> ap;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>0</span>] <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>ptr[s];
+	ap<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> j <span style=color:#000;font-weight:700>-</span> <span style=color:#099>1</span>;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>-=</span> j;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>parent;
+	<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>; i <span style=color:#000;font-weight:700>&lt;=</span> ap<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>)
+		<span style=color:#000;font-weight:700>if</span> (ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[i])
+			ap<span style=color:#000;font-weight:700>-&gt;</span>ptr[i]<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> ap;
 }
 
-<span style=color:#09f;font-style:italic>// 生成含信息(t, x, ap)的新根结点t, 原t和 ap为子树指针
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>newRoot(BTNode<span style=color:#555>*&amp;</span> t, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> x, BTNode<span style=color:#555>*</span> ap) {
-	q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-	q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-	q<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>] <span style=color:#555>=</span> x;
-	q<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>0</span>] <span style=color:#555>=</span> t;
-	q<span style=color:#555>-&gt;</span>ptr[<span style=color:#f60>1</span>] <span style=color:#555>=</span> ap;
-	t<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q;
-	ap<span style=color:#555>-&gt;</span>parent <span style=color:#555>=</span> q;
-	<span style=color:#069;font-weight:700>this</span><span style=color:#555>-&gt;</span>root <span style=color:#555>=</span> q;
+<span style=color:#998;font-style:italic>// 生成含信息(t, x, ap)的新根结点t, 原t和 ap为子树指针
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>newRoot(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> x, BTNode<span style=color:#000;font-weight:700>*</span> ap) {
+	q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+	q<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> x;
+	q<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>0</span>] <span style=color:#000;font-weight:700>=</span> t;
+	q<span style=color:#000;font-weight:700>-&gt;</span>ptr[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> ap;
+	t<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q;
+	ap<span style=color:#000;font-weight:700>-&gt;</span>parent <span style=color:#000;font-weight:700>=</span> q;
+	<span style=color:#000;font-weight:700>this</span><span style=color:#000;font-weight:700>-&gt;</span>root <span style=color:#000;font-weight:700>=</span> q;
 }
 
-<span style=color:#09f;font-style:italic>// 遍历所有节点查询key关键字
-</span><span style=color:#09f;font-style:italic></span>Result BTree<span style=color:#555>::</span>searchBT(BTNode<span style=color:#555>*</span> t, <span style=color:#078;font-weight:700>int</span> k) {
-	BTNode<span style=color:#555>*</span> p <span style=color:#555>=</span> t, <span style=color:#555>*</span> q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>; <span style=color:#09f;font-style:italic>// p指向当前查询节点，q指向当前节点的父节点
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>bool</span> found <span style=color:#555>=</span> <span style=color:#366>false</span>;
-	<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>;
-	<span style=color:#069;font-weight:700>while</span> (p <span style=color:#555>&amp;&amp;</span> <span style=color:#555>!</span>found) {
-		i <span style=color:#555>=</span> search(p, k);	<span style=color:#09f;font-style:italic>// 在当前节点中查找k
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (p<span style=color:#555>-&gt;</span>keys[i <span style=color:#555>+</span> <span style=color:#f60>1</span>] <span style=color:#555>==</span> k)
-			found <span style=color:#555>=</span> <span style=color:#366>true</span>;
-		<span style=color:#069;font-weight:700>else</span> {
-			q <span style=color:#555>=</span> p;
-			p <span style=color:#555>=</span> p<span style=color:#555>-&gt;</span>ptr[i];	<span style=color:#09f;font-style:italic>// 转到下一个节点
-</span><span style=color:#09f;font-style:italic></span>		}
+<span style=color:#998;font-style:italic>// 遍历所有节点查询key关键字
+</span><span style=color:#998;font-style:italic></span>Result BTree<span style=color:#000;font-weight:700>::</span>searchBT(BTNode<span style=color:#000;font-weight:700>*</span> t, <span style=color:#458;font-weight:700>int</span> k) {
+	BTNode<span style=color:#000;font-weight:700>*</span> p <span style=color:#000;font-weight:700>=</span> t, <span style=color:#000;font-weight:700>*</span> q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>; <span style=color:#998;font-style:italic>// p指向当前查询节点，q指向当前节点的父节点
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#458;font-weight:700>bool</span> found <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>false</span>;
+	<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>;
+	<span style=color:#000;font-weight:700>while</span> (p <span style=color:#000;font-weight:700>&amp;&amp;</span> <span style=color:#000;font-weight:700>!</span>found) {
+		i <span style=color:#000;font-weight:700>=</span> search(p, k);	<span style=color:#998;font-style:italic>// 在当前节点中查找k
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#000;font-weight:700>if</span> (p<span style=color:#000;font-weight:700>-&gt;</span>keys[i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>] <span style=color:#000;font-weight:700>==</span> k)
+			found <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
+		<span style=color:#000;font-weight:700>else</span> {
+			q <span style=color:#000;font-weight:700>=</span> p;
+			p <span style=color:#000;font-weight:700>=</span> p<span style=color:#000;font-weight:700>-&gt;</span>ptr[i];	<span style=color:#998;font-style:italic>// 转到下一个节点
+</span><span style=color:#998;font-style:italic></span>		}
 	}
-	<span style=color:#069;font-weight:700>if</span> (found)
-		<span style=color:#069;font-weight:700>return</span> Result(p, i <span style=color:#555>+</span> <span style=color:#f60>1</span>, <span style=color:#f60>1</span>);	<span style=color:#09f;font-style:italic>// 查找成功，返回节点信息
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>else</span>
-		<span style=color:#069;font-weight:700>return</span> <span style=color:#c0f>Result</span>(q, i, <span style=color:#f60>0</span>);	<span style=color:#09f;font-style:italic>// 查找失败，返回插入位置信息
-</span><span style=color:#09f;font-style:italic></span>}
+	<span style=color:#000;font-weight:700>if</span> (found)
+		<span style=color:#000;font-weight:700>return</span> Result(p, i <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>, <span style=color:#099>1</span>);	<span style=color:#998;font-style:italic>// 查找成功，返回节点信息
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>else</span>
+		<span style=color:#000;font-weight:700>return</span> <span style=color:#900;font-weight:700>Result</span>(q, i, <span style=color:#099>0</span>);	<span style=color:#998;font-style:italic>// 查找失败，返回插入位置信息
+</span><span style=color:#998;font-style:italic></span>}
 
-<span style=color:#09f;font-style:italic>// 参考课本244页算法9.14
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>insertBT(BTNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> k, BTNode<span style=color:#555>*</span> q, <span style=color:#078;font-weight:700>int</span> i) {
-	<span style=color:#078;font-weight:700>int</span> x <span style=color:#555>=</span> k;
-	BTNode<span style=color:#555>*</span> ap <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
-	<span style=color:#078;font-weight:700>bool</span> finished <span style=color:#555>=</span> <span style=color:#366>false</span>;
-	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>q) {	<span style=color:#09f;font-style:italic>// 创建第一个节点
-</span><span style=color:#09f;font-style:italic></span>		q <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BTNode;
-		q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>=</span> <span style=color:#f60>1</span>;
-		q<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>] <span style=color:#555>=</span> k;
-		<span style=color:#069;font-weight:700>this</span><span style=color:#555>-&gt;</span>root <span style=color:#555>=</span> q;
-		<span style=color:#069;font-weight:700>return</span>;
+<span style=color:#998;font-style:italic>// 参考课本244页算法9.14
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>insertBT(BTNode<span style=color:#000;font-weight:700>*&amp;</span> t, <span style=color:#458;font-weight:700>int</span> k, BTNode<span style=color:#000;font-weight:700>*</span> q, <span style=color:#458;font-weight:700>int</span> i) {
+	<span style=color:#458;font-weight:700>int</span> x <span style=color:#000;font-weight:700>=</span> k;
+	BTNode<span style=color:#000;font-weight:700>*</span> ap <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
+	<span style=color:#458;font-weight:700>bool</span> finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>false</span>;
+	<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>q) {	<span style=color:#998;font-style:italic>// 创建第一个节点
+</span><span style=color:#998;font-style:italic></span>		q <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>new</span> BTNode;
+		q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>=</span> <span style=color:#099>1</span>;
+		q<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>] <span style=color:#000;font-weight:700>=</span> k;
+		<span style=color:#000;font-weight:700>this</span><span style=color:#000;font-weight:700>-&gt;</span>root <span style=color:#000;font-weight:700>=</span> q;
+		<span style=color:#000;font-weight:700>return</span>;
 	}
-	<span style=color:#069;font-weight:700>while</span> (<span style=color:#555>!</span>finished) {
-		insert(q, i, x, ap);	<span style=color:#09f;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (q<span style=color:#555>-&gt;</span>keyNum <span style=color:#555>&lt;</span> m)	<span style=color:#09f;font-style:italic>// 插入完成（keys从1开始，所以判断keyNum &lt; m）
-</span><span style=color:#09f;font-style:italic></span>			finished <span style=color:#555>=</span> <span style=color:#366>true</span>;
-		<span style=color:#069;font-weight:700>else</span> {	<span style=color:#09f;font-style:italic>// 分裂节点*q
-</span><span style=color:#09f;font-style:italic></span>			<span style=color:#078;font-weight:700>int</span> s <span style=color:#555>=</span> (m <span style=color:#555>+</span> <span style=color:#f60>1</span>) <span style=color:#555>/</span> <span style=color:#f60>2</span>;	<span style=color:#09f;font-style:italic>// 向上取整
-</span><span style=color:#09f;font-style:italic></span>			split(q, s, ap);	<span style=color:#09f;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
-</span><span style=color:#09f;font-style:italic></span>			x <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>keys[s];
-			q <span style=color:#555>=</span> q<span style=color:#555>-&gt;</span>parent;
-			<span style=color:#069;font-weight:700>if</span> (q)
-				i <span style=color:#555>=</span> search(q, x);	<span style=color:#09f;font-style:italic>//查找在父节点的插入位置
-</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>else</span> {
+	<span style=color:#000;font-weight:700>while</span> (<span style=color:#000;font-weight:700>!</span>finished) {
+		insert(q, i, x, ap);	<span style=color:#998;font-style:italic>// 将k和ap分别插入t-&gt;key[i+1]和t-&gt;ptr[i + 1]
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#000;font-weight:700>if</span> (q<span style=color:#000;font-weight:700>-&gt;</span>keyNum <span style=color:#000;font-weight:700>&lt;</span> m)	<span style=color:#998;font-style:italic>// 插入完成（keys从1开始，所以判断keyNum &lt; m）
+</span><span style=color:#998;font-style:italic></span>			finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
+		<span style=color:#000;font-weight:700>else</span> {	<span style=color:#998;font-style:italic>// 分裂节点*q
+</span><span style=color:#998;font-style:italic></span>			<span style=color:#458;font-weight:700>int</span> s <span style=color:#000;font-weight:700>=</span> (m <span style=color:#000;font-weight:700>+</span> <span style=color:#099>1</span>) <span style=color:#000;font-weight:700>/</span> <span style=color:#099>2</span>;	<span style=color:#998;font-style:italic>// 向上取整
+</span><span style=color:#998;font-style:italic></span>			split(q, s, ap);	<span style=color:#998;font-style:italic>// 将q-&gt;key[s+1...m],q-&gt;ptr[s...m]移入新结点ap
+</span><span style=color:#998;font-style:italic></span>			x <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>keys[s];
+			q <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>-&gt;</span>parent;
+			<span style=color:#000;font-weight:700>if</span> (q)
+				i <span style=color:#000;font-weight:700>=</span> search(q, x);	<span style=color:#998;font-style:italic>//查找在父节点的插入位置
+</span><span style=color:#998;font-style:italic></span>			<span style=color:#000;font-weight:700>else</span> {
 				newRoot(t, q, x, ap);
-				finished <span style=color:#555>=</span> <span style=color:#366>true</span>;
+				finished <span style=color:#000;font-weight:700>=</span> <span style=color:#0086b3>true</span>;
 			}
 		}
 	}
 }
 
-<span style=color:#09f;font-style:italic>// B树初始化
-</span><span style=color:#09f;font-style:italic></span>BTree<span style=color:#555>::</span>BTree() {
-	root <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
+<span style=color:#998;font-style:italic>// B树初始化
+</span><span style=color:#998;font-style:italic></span>BTree<span style=color:#000;font-weight:700>::</span>BTree() {
+	root <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
 }
 
-BTree<span style=color:#555>::~</span>BTree() {
-	root <span style=color:#555>=</span> <span style=color:#069;font-weight:700>nullptr</span>;
+BTree<span style=color:#000;font-weight:700>::~</span>BTree() {
+	root <span style=color:#000;font-weight:700>=</span> <span style=color:#000;font-weight:700>nullptr</span>;
 }
 
-<span style=color:#09f;font-style:italic>// B-树插入操作
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>insertBT(<span style=color:#078;font-weight:700>int</span> key) {
-	Result r <span style=color:#555>=</span> searchBT(root, key);
-	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>r.tag) {
+<span style=color:#998;font-style:italic>// B-树插入操作
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>insertBT(<span style=color:#458;font-weight:700>int</span> key) {
+	Result r <span style=color:#000;font-weight:700>=</span> searchBT(root, key);
+	<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>r.tag) {
 		insertBT(root, key, r.pt, r.i);
 	}
 }
 
-<span style=color:#09f;font-style:italic>// B-树查找操作
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>searchBT(<span style=color:#078;font-weight:700>int</span> key) {
-	Result r <span style=color:#555>=</span> searchBT(root, key);
-	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>r.tag) {
-		cout <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#34;-1&#34;</span> <span style=color:#555>&lt;&lt;</span> endl;
+<span style=color:#998;font-style:italic>// B-树查找操作
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>searchBT(<span style=color:#458;font-weight:700>int</span> key) {
+	Result r <span style=color:#000;font-weight:700>=</span> searchBT(root, key);
+	<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>r.tag) {
+		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#34;-1&#34;</span> <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
 	}
-	<span style=color:#069;font-weight:700>else</span> {
-		BTNode<span style=color:#555>*</span> p <span style=color:#555>=</span> r.pt;
-		cout <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>];
-		<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>2</span>; i <span style=color:#555>&lt;=</span> p<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>) {
-			cout <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39;:&#39;</span> <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>keys[i];
+	<span style=color:#000;font-weight:700>else</span> {
+		BTNode<span style=color:#000;font-weight:700>*</span> p <span style=color:#000;font-weight:700>=</span> r.pt;
+		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> p<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>];
+		<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>2</span>; i <span style=color:#000;font-weight:700>&lt;=</span> p<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>) {
+			cout <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39;:&#39;</span> <span style=color:#000;font-weight:700>&lt;&lt;</span> p<span style=color:#000;font-weight:700>-&gt;</span>keys[i];
 		}
-		cout <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39; &#39;</span> <span style=color:#555>&lt;&lt;</span> r.i <span style=color:#555>&lt;&lt;</span> endl;
+		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span> <span style=color:#000;font-weight:700>&lt;&lt;</span> r.i <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
 	}
-	<span style=color:#069;font-weight:700>return</span>;
+	<span style=color:#000;font-weight:700>return</span>;
 }
 
-<span style=color:#09f;font-style:italic>// B-树层次遍历输出关键字
-</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BTree<span style=color:#555>::</span>levelOrder() {
-	queue<span style=color:#555>&lt;</span>BTNode<span style=color:#555>*&gt;</span> tq;
-	BTNode<span style=color:#555>*</span> p <span style=color:#555>=</span> root;
-	<span style=color:#09f;font-style:italic>// 首结点入队
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>if</span> (p) {
+<span style=color:#998;font-style:italic>// B-树层次遍历输出关键字
+</span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BTree<span style=color:#000;font-weight:700>::</span>levelOrder() {
+	queue<span style=color:#000;font-weight:700>&lt;</span>BTNode<span style=color:#000;font-weight:700>*&gt;</span> tq;
+	BTNode<span style=color:#000;font-weight:700>*</span> p <span style=color:#000;font-weight:700>=</span> root;
+	<span style=color:#998;font-style:italic>// 首结点入队
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>if</span> (p) {
 		tq.push(p);
 	}
-	<span style=color:#09f;font-style:italic>// 层次遍历树
-</span><span style=color:#09f;font-style:italic></span>	<span style=color:#069;font-weight:700>while</span> (<span style=color:#555>!</span>tq.empty()) {
-		p <span style=color:#555>=</span> tq.front();
+	<span style=color:#998;font-style:italic>// 层次遍历树
+</span><span style=color:#998;font-style:italic></span>	<span style=color:#000;font-weight:700>while</span> (<span style=color:#000;font-weight:700>!</span>tq.empty()) {
+		p <span style=color:#000;font-weight:700>=</span> tq.front();
 		tq.pop();
-		<span style=color:#09f;font-style:italic>// 输出结点p的key
-</span><span style=color:#09f;font-style:italic></span>		cout <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>keys[<span style=color:#f60>1</span>];
-		<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>2</span>; i <span style=color:#555>&lt;=</span> p<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>) {
-			cout <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39;:&#39;</span> <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>keys[i];
+		<span style=color:#998;font-style:italic>// 输出结点p的key
+</span><span style=color:#998;font-style:italic></span>		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> p<span style=color:#000;font-weight:700>-&gt;</span>keys[<span style=color:#099>1</span>];
+		<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>2</span>; i <span style=color:#000;font-weight:700>&lt;=</span> p<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>) {
+			cout <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39;:&#39;</span> <span style=color:#000;font-weight:700>&lt;&lt;</span> p<span style=color:#000;font-weight:700>-&gt;</span>keys[i];
 		}
-		cout <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39; &#39;</span>;
-		<span style=color:#09f;font-style:italic>// 自结点入栈
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>for</span> (<span style=color:#078;font-weight:700>int</span> i <span style=color:#555>=</span> <span style=color:#f60>0</span>; i <span style=color:#555>&lt;=</span> p<span style=color:#555>-&gt;</span>keyNum; i<span style=color:#555>++</span>) {
-			<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>p<span style=color:#555>-&gt;</span>ptr[i]) {
-				<span style=color:#069;font-weight:700>break</span>;
+		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span>;
+		<span style=color:#998;font-style:italic>// 自结点入栈
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#000;font-weight:700>for</span> (<span style=color:#458;font-weight:700>int</span> i <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>; i <span style=color:#000;font-weight:700>&lt;=</span> p<span style=color:#000;font-weight:700>-&gt;</span>keyNum; i<span style=color:#000;font-weight:700>++</span>) {
+			<span style=color:#000;font-weight:700>if</span> (<span style=color:#000;font-weight:700>!</span>p<span style=color:#000;font-weight:700>-&gt;</span>ptr[i]) {
+				<span style=color:#000;font-weight:700>break</span>;
 			}
-			tq.push(p<span style=color:#555>-&gt;</span>ptr[i]);
+			tq.push(p<span style=color:#000;font-weight:700>-&gt;</span>ptr[i]);
 		}
 	}
-	<span style=color:#069;font-weight:700>return</span>;
+	<span style=color:#000;font-weight:700>return</span>;
 }
 
-<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>main</span>(<span style=color:#078;font-weight:700>void</span>) {
-	<span style=color:#078;font-weight:700>int</span> t;
-	cin <span style=color:#555>&gt;&gt;</span> t;
-	<span style=color:#069;font-weight:700>while</span> (t<span style=color:#555>--</span>) {
-		cin <span style=color:#555>&gt;&gt;</span> m;
-		<span style=color:#078;font-weight:700>int</span> n, k, key;
-		<span style=color:#09f;font-style:italic>// 构建B-树
-</span><span style=color:#09f;font-style:italic></span>		cin <span style=color:#555>&gt;&gt;</span> n;
+<span style=color:#458;font-weight:700>int</span> <span style=color:#900;font-weight:700>main</span>(<span style=color:#458;font-weight:700>void</span>) {
+	<span style=color:#458;font-weight:700>int</span> t;
+	cin <span style=color:#000;font-weight:700>&gt;&gt;</span> t;
+	<span style=color:#000;font-weight:700>while</span> (t<span style=color:#000;font-weight:700>--</span>) {
+		cin <span style=color:#000;font-weight:700>&gt;&gt;</span> m;
+		<span style=color:#458;font-weight:700>int</span> n, k, key;
+		<span style=color:#998;font-style:italic>// 构建B-树
+</span><span style=color:#998;font-style:italic></span>		cin <span style=color:#000;font-weight:700>&gt;&gt;</span> n;
 		BTree bTree;
-		<span style=color:#069;font-weight:700>while</span> (n<span style=color:#555>--</span>) {
-			cin <span style=color:#555>&gt;&gt;</span> key;
+		<span style=color:#000;font-weight:700>while</span> (n<span style=color:#000;font-weight:700>--</span>) {
+			cin <span style=color:#000;font-weight:700>&gt;&gt;</span> key;
 			bTree.insertBT(key);
 		}
-		<span style=color:#09f;font-style:italic>// 按层次遍历输出B-树
-</span><span style=color:#09f;font-style:italic></span>		bTree.levelOrder();
-		cout <span style=color:#555>&lt;&lt;</span> endl;
-		<span style=color:#09f;font-style:italic>// 查找B-树结点
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#09f;font-style:italic>//cin &gt;&gt; k;
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#09f;font-style:italic>//while (k--) {
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#09f;font-style:italic>//	cin &gt;&gt; key;
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#09f;font-style:italic>//	bTree.searchBT(key);
-</span><span style=color:#09f;font-style:italic></span>		<span style=color:#09f;font-style:italic>//}
-</span><span style=color:#09f;font-style:italic></span>	}
-	<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
+		<span style=color:#998;font-style:italic>// 按层次遍历输出B-树
+</span><span style=color:#998;font-style:italic></span>		bTree.levelOrder();
+		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
+		<span style=color:#998;font-style:italic>// 查找B-树结点
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#998;font-style:italic>//cin &gt;&gt; k;
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#998;font-style:italic>//while (k--) {
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#998;font-style:italic>//	cin &gt;&gt; key;
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#998;font-style:italic>//	bTree.searchBT(key);
+</span><span style=color:#998;font-style:italic></span>		<span style=color:#998;font-style:italic>//}
+</span><span style=color:#998;font-style:italic></span>	}
+	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
 </code></pre></div><h2 id=参考资料>参考资料</h2><p><a href=https://www.yiibai.com/data_structure/b-tree.html>https://www.yiibai.com/data_structure/b-tree.html</a></p><p><a href=https://blog.csdn.net/alzzw/article/details/97663352>https://blog.csdn.net/alzzw/article/details/97663352</a></p><p>《数据结构（C语言版）》清华大学出版社</p><p>  </p><p>  </p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84 rel=tag title=数据结构>#数据结构#</a>
 <a href=/tags/b%e6%a0%91 rel=tag title=B树>#B树#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/wechat.jpg width=129px height=129px><div style=text-align:center>交个朋友@_@</div></div><div class=article-copyright-info><p><span>声明：</span>手撸一颗B树</p><p><span>链接：</span>https://yinan-hong.github.io/post/btree/</p><p><span>作者：</span>兔楠</p><p><span>声明： </span>本站文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/3.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，打赏可以随意 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');qr.style.display==='none'?qr.style.display='block':qr.style.display='none'">
