@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>手撸AVL树 - 兔兔的网站</title><meta name=keywords content="博客,码农,C/C++,算法,流行音乐,漫威"><meta name=author content="兔楠"><meta property="og:title" content="手撸AVL树"><meta property="og:site_name" content="兔兔的网站"><meta property="og:image" content="/img/author.jpg"><meta name=title content="手撸AVL树 - 兔兔的网站"><meta name=description content="欢迎访问兔兔的网站。兔兔现在是物联网工程专业本科生。"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/headpic.jpg><link rel=apple-touch-icon-precomposed href=/img/headpic.jpg><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script type=text/javascript>var _hmt=_hmt||[];(function(){var a=document.createElement("script"),b;a.src="https://hm.baidu.com/hm.js?Your BaiduSiteId",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script async src="https://www.googletagmanager.com/gtag/js?id=Your%20GoogleSiteId"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','Your GoogleSiteId ')</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i>
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>手撸AVL树 - 兔兔的网站</title><meta name=keywords content="博客,码农,C/C++,算法,流行音乐,漫威"><meta name=author content="兔楠"><meta property="og:title" content="手撸AVL树"><meta property="og:site_name" content="兔兔的网站"><meta property="og:image" content="/img/author.jpg"><meta name=title content="手撸AVL树 - 兔兔的网站"><meta name=description content="欢迎访问兔兔的网站。兔兔现在是物联网工程专业本科生。"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/headpic.jpg><link rel=apple-touch-icon-precomposed href=/img/headpic.jpg><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/oceanicnext.min.css rel=stylesheet><script src=/js/highlight.js></script><script src=/js/highlight.min.js></script><script>hljs.initHighlightingOnLoad()</script><script type=text/javascript>var _hmt=_hmt||[];(function(){var a=document.createElement("script"),b;a.src="https://hm.baidu.com/hm.js?Your BaiduSiteId",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script async src="https://www.googletagmanager.com/gtag/js?id=Your%20GoogleSiteId"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','Your GoogleSiteId ')</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i>
 <a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span>
 <span class=site-title>兔兔的网站</span>
 <span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>即将上线，敬请期待</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>所有文章</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span>
@@ -23,221 +23,221 @@
 <span id=/post/avltree/ class=leancloud_visitors data-flag-title=手撸AVL树>|
 <i class="fa fa-binoculars fa-fw"></i>
 <span class=post-meta-item-text>阅读次数：</span>
-<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>Wiki:在计算机科学中，AVL树是最早被发明的自平衡二叉查找树。在AVL树中，任一节点对应的两棵子树的最大高度差为1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是O(logn)。</p><p>先丢个代码，周末再补原理介绍。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++>
-<span style=color:#080>#include</span> <span style=color:#080>&lt;iostream&gt;</span><span style=color:#080>
-</span><span style=color:#080></span><span style=color:#a2f;font-weight:700>using</span> <span style=color:#a2f;font-weight:700>namespace</span> std;
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>Wiki:在计算机科学中，AVL树是最早被发明的自平衡二叉查找树。在AVL树中，任一节点对应的两棵子树的最大高度差为1，因此它也被称为高度平衡树。查找、插入和删除在平均和最坏情况下的时间复杂度都是O(logn)。</p><p>先丢个代码，周末再补原理介绍。</p><div class=highlight><pre style=background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++>
+<span style=color:#099>#include</span> <span style=color:#099>&lt;iostream&gt;</span><span style=color:#099>
+</span><span style=color:#099></span><span style=color:#069;font-weight:700>using</span> <span style=color:#069;font-weight:700>namespace</span> std;
 
-<span style=color:#080>#define LH 1 </span><span style=color:#080;font-style:italic>// 左高
-</span><span style=color:#080;font-style:italic></span><span style=color:#080>#define EH 0 </span><span style=color:#080;font-style:italic>// 等高
-</span><span style=color:#080;font-style:italic></span><span style=color:#080>#define RH -1 </span><span style=color:#080;font-style:italic>// 右高
-</span><span style=color:#080;font-style:italic></span>
-<span style=color:#a2f;font-weight:700>class</span> <span style=color:#00f>BiNode</span> {
-<span style=color:#a2f;font-weight:700>public</span><span style=color:#666>:</span>
-	<span style=color:#0b0;font-weight:700>int</span> key; <span style=color:#080;font-style:italic>// 关键值
-</span><span style=color:#080;font-style:italic></span>	<span style=color:#0b0;font-weight:700>int</span> bf; <span style=color:#080;font-style:italic>// 平衡因子
-</span><span style=color:#080;font-style:italic></span>	BiNode<span style=color:#666>*</span> lChild, <span style=color:#666>*</span> rChild;
-	BiNode(<span style=color:#0b0;font-weight:700>int</span> kValue, <span style=color:#0b0;font-weight:700>int</span> bValue) {
-		key <span style=color:#666>=</span> kValue;
-		bf <span style=color:#666>=</span> bValue;
-		lChild <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
-		rChild <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
+<span style=color:#099>#define LH 1 </span><span style=color:#09f;font-style:italic>// 左高
+</span><span style=color:#09f;font-style:italic></span><span style=color:#099>#define EH 0 </span><span style=color:#09f;font-style:italic>// 等高
+</span><span style=color:#09f;font-style:italic></span><span style=color:#099>#define RH -1 </span><span style=color:#09f;font-style:italic>// 右高
+</span><span style=color:#09f;font-style:italic></span>
+<span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BiNode</span> {
+<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
+	<span style=color:#078;font-weight:700>int</span> key; <span style=color:#09f;font-style:italic>// 关键值
+</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>int</span> bf; <span style=color:#09f;font-style:italic>// 平衡因子
+</span><span style=color:#09f;font-style:italic></span>	BiNode<span style=color:#555>*</span> lChild, <span style=color:#555>*</span> rChild;
+	BiNode(<span style=color:#078;font-weight:700>int</span> kValue, <span style=color:#078;font-weight:700>int</span> bValue) {
+		key <span style=color:#555>=</span> kValue;
+		bf <span style=color:#555>=</span> bValue;
+		lChild <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
+		rChild <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
 	}
-	<span style=color:#666>~</span>BiNode() {
-		key <span style=color:#666>=</span> <span style=color:#666>0</span>;
-		bf <span style=color:#666>=</span> <span style=color:#666>0</span>;
-		lChild <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
-		rChild <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
+	<span style=color:#555>~</span>BiNode() {
+		key <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+		bf <span style=color:#555>=</span> <span style=color:#f60>0</span>;
+		lChild <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
+		rChild <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
 	}
 };
 
-<span style=color:#080;font-style:italic>// 二叉排序树
-</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>class</span> <span style=color:#00f>BST</span> {
-<span style=color:#a2f;font-weight:700>private</span><span style=color:#666>:</span>
-	BiNode<span style=color:#666>*</span> root; <span style=color:#080;font-style:italic>// 根结点指针
-</span><span style=color:#080;font-style:italic></span>	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>rRotate</span>(BiNode<span style=color:#666>*&amp;</span> p);
-	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>lRotate</span>(BiNode<span style=color:#666>*&amp;</span> p);
-	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>leftBalance</span>(BiNode<span style=color:#666>*&amp;</span> t);
-	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>rightBalance</span>(BiNode<span style=color:#666>*&amp;</span> t);
-	<span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>insertAVL</span>(BiNode<span style=color:#666>*&amp;</span> t, <span style=color:#0b0;font-weight:700>int</span> key, <span style=color:#0b0;font-weight:700>bool</span><span style=color:#666>&amp;</span> taller); <span style=color:#080;font-style:italic>// 插入元素并做平衡处理
-</span><span style=color:#080;font-style:italic></span>	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>inOrder</span>(BiNode<span style=color:#666>*</span> p);
-<span style=color:#a2f;font-weight:700>public</span><span style=color:#666>:</span>
+<span style=color:#09f;font-style:italic>// 二叉排序树
+</span><span style=color:#09f;font-style:italic></span><span style=color:#069;font-weight:700>class</span> <span style=color:#0a8;font-weight:700>BST</span> {
+<span style=color:#069;font-weight:700>private</span><span style=color:#555>:</span>
+	BiNode<span style=color:#555>*</span> root; <span style=color:#09f;font-style:italic>// 根结点指针
+</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>rRotate</span>(BiNode<span style=color:#555>*&amp;</span> p);
+	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>lRotate</span>(BiNode<span style=color:#555>*&amp;</span> p);
+	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>leftBalance</span>(BiNode<span style=color:#555>*&amp;</span> t);
+	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>rightBalance</span>(BiNode<span style=color:#555>*&amp;</span> t);
+	<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>insertAVL</span>(BiNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> key, <span style=color:#078;font-weight:700>bool</span><span style=color:#555>&amp;</span> taller); <span style=color:#09f;font-style:italic>// 插入元素并做平衡处理
+</span><span style=color:#09f;font-style:italic></span>	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>inOrder</span>(BiNode<span style=color:#555>*</span> p);
+<span style=color:#069;font-weight:700>public</span><span style=color:#555>:</span>
 	BST();
-	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>insertAVL</span>(<span style=color:#0b0;font-weight:700>int</span> key); <span style=color:#080;font-style:italic>// 二叉排序树插入元素
-</span><span style=color:#080;font-style:italic></span>	<span style=color:#666>~</span>BST();
-	<span style=color:#0b0;font-weight:700>void</span> <span style=color:#00a000>inOrder</span>(); <span style=color:#080;font-style:italic>// 中序遍历
-</span><span style=color:#080;font-style:italic></span>};
+	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>insertAVL</span>(<span style=color:#078;font-weight:700>int</span> key); <span style=color:#09f;font-style:italic>// 二叉排序树插入元素
+</span><span style=color:#09f;font-style:italic></span>	<span style=color:#555>~</span>BST();
+	<span style=color:#078;font-weight:700>void</span> <span style=color:#c0f>inOrder</span>(); <span style=color:#09f;font-style:italic>// 中序遍历
+</span><span style=color:#09f;font-style:italic></span>};
 
-<span style=color:#080;font-style:italic>// 以p为根的二叉排序树作右旋处理
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>rRotate(BiNode<span style=color:#666>*&amp;</span> p) {
-	BiNode<span style=color:#666>*</span> lc <span style=color:#666>=</span> p<span style=color:#666>-&gt;</span>lChild;
-	p<span style=color:#666>-&gt;</span>lChild <span style=color:#666>=</span> lc<span style=color:#666>-&gt;</span>rChild;
-	lc<span style=color:#666>-&gt;</span>rChild <span style=color:#666>=</span> p;
-	p <span style=color:#666>=</span> lc;
+<span style=color:#09f;font-style:italic>// 以p为根的二叉排序树作右旋处理
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>rRotate(BiNode<span style=color:#555>*&amp;</span> p) {
+	BiNode<span style=color:#555>*</span> lc <span style=color:#555>=</span> p<span style=color:#555>-&gt;</span>lChild;
+	p<span style=color:#555>-&gt;</span>lChild <span style=color:#555>=</span> lc<span style=color:#555>-&gt;</span>rChild;
+	lc<span style=color:#555>-&gt;</span>rChild <span style=color:#555>=</span> p;
+	p <span style=color:#555>=</span> lc;
 }
 
-<span style=color:#080;font-style:italic>// 以p为根的二叉排序树作左旋处理
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>lRotate(BiNode<span style=color:#666>*&amp;</span> p) {
-	BiNode<span style=color:#666>*</span> rc <span style=color:#666>=</span> p<span style=color:#666>-&gt;</span>rChild;
-	p<span style=color:#666>-&gt;</span>rChild <span style=color:#666>=</span> rc<span style=color:#666>-&gt;</span>lChild;
-	rc<span style=color:#666>-&gt;</span>lChild <span style=color:#666>=</span> p;
-	p <span style=color:#666>=</span> rc;
+<span style=color:#09f;font-style:italic>// 以p为根的二叉排序树作左旋处理
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>lRotate(BiNode<span style=color:#555>*&amp;</span> p) {
+	BiNode<span style=color:#555>*</span> rc <span style=color:#555>=</span> p<span style=color:#555>-&gt;</span>rChild;
+	p<span style=color:#555>-&gt;</span>rChild <span style=color:#555>=</span> rc<span style=color:#555>-&gt;</span>lChild;
+	rc<span style=color:#555>-&gt;</span>lChild <span style=color:#555>=</span> p;
+	p <span style=color:#555>=</span> rc;
 }
 
-<span style=color:#080;font-style:italic>// t为根的二叉排序树作左平衡旋转处理
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>leftBalance(BiNode<span style=color:#666>*&amp;</span> t) {
-	BiNode <span style=color:#666>*</span>l <span style=color:#666>=</span> t<span style=color:#666>-&gt;</span>lChild;
-	<span style=color:#a2f;font-weight:700>switch</span> (l<span style=color:#666>-&gt;</span>bf) {
-	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> l<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; rRotate(t); <span style=color:#a2f;font-weight:700>break</span>;
-	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>:
-		BiNode <span style=color:#666>*</span>lr <span style=color:#666>=</span> l<span style=color:#666>-&gt;</span>rChild;
-		<span style=color:#a2f;font-weight:700>switch</span> (lr<span style=color:#666>-&gt;</span>bf) {
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> RH; l<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; <span style=color:#a2f;font-weight:700>break</span>;
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>EH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> l<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; <span style=color:#a2f;font-weight:700>break</span>;
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; l<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> LH; <span style=color:#a2f;font-weight:700>break</span>;
+<span style=color:#09f;font-style:italic>// t为根的二叉排序树作左平衡旋转处理
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>leftBalance(BiNode<span style=color:#555>*&amp;</span> t) {
+	BiNode <span style=color:#555>*</span>l <span style=color:#555>=</span> t<span style=color:#555>-&gt;</span>lChild;
+	<span style=color:#069;font-weight:700>switch</span> (l<span style=color:#555>-&gt;</span>bf) {
+	<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> l<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; rRotate(t); <span style=color:#069;font-weight:700>break</span>;
+	<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>:
+		BiNode <span style=color:#555>*</span>lr <span style=color:#555>=</span> l<span style=color:#555>-&gt;</span>rChild;
+		<span style=color:#069;font-weight:700>switch</span> (lr<span style=color:#555>-&gt;</span>bf) {
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> RH; l<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; <span style=color:#069;font-weight:700>break</span>;
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>EH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> l<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; <span style=color:#069;font-weight:700>break</span>;
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; l<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> LH; <span style=color:#069;font-weight:700>break</span>;
 		}
-		lr<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH;
-		lRotate(t<span style=color:#666>-&gt;</span>lChild);
+		lr<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH;
+		lRotate(t<span style=color:#555>-&gt;</span>lChild);
 		rRotate(t);
 	}
 }
 
-<span style=color:#080;font-style:italic>// t为根的二叉排序树作右平衡旋转处理
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>rightBalance(BiNode<span style=color:#666>*&amp;</span> t) {
-	BiNode<span style=color:#666>*</span> r <span style=color:#666>=</span> t<span style=color:#666>-&gt;</span>rChild;
-	<span style=color:#a2f;font-weight:700>switch</span> (r<span style=color:#666>-&gt;</span>bf) {
-	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> r<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; lRotate(t); <span style=color:#a2f;font-weight:700>break</span>;
-	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>:
-		BiNode<span style=color:#666>*</span> rl <span style=color:#666>=</span> r<span style=color:#666>-&gt;</span>lChild;
-		<span style=color:#a2f;font-weight:700>switch</span> (rl<span style=color:#666>-&gt;</span>bf) {
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> LH; r<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; <span style=color:#a2f;font-weight:700>break</span>;
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>EH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> r<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; <span style=color:#a2f;font-weight:700>break</span>;
-		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>: t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; r<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> RH; <span style=color:#a2f;font-weight:700>break</span>;
+<span style=color:#09f;font-style:italic>// t为根的二叉排序树作右平衡旋转处理
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>rightBalance(BiNode<span style=color:#555>*&amp;</span> t) {
+	BiNode<span style=color:#555>*</span> r <span style=color:#555>=</span> t<span style=color:#555>-&gt;</span>rChild;
+	<span style=color:#069;font-weight:700>switch</span> (r<span style=color:#555>-&gt;</span>bf) {
+	<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> r<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; lRotate(t); <span style=color:#069;font-weight:700>break</span>;
+	<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>:
+		BiNode<span style=color:#555>*</span> rl <span style=color:#555>=</span> r<span style=color:#555>-&gt;</span>lChild;
+		<span style=color:#069;font-weight:700>switch</span> (rl<span style=color:#555>-&gt;</span>bf) {
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> LH; r<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; <span style=color:#069;font-weight:700>break</span>;
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>EH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> r<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; <span style=color:#069;font-weight:700>break</span>;
+		<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>: t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; r<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> RH; <span style=color:#069;font-weight:700>break</span>;
 		}
-		rl<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH;
-		rRotate(t<span style=color:#666>-&gt;</span>rChild);
+		rl<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH;
+		rRotate(t<span style=color:#555>-&gt;</span>rChild);
 		lRotate(t);
 	}
 }
 
 
-<span style=color:#0b0;font-weight:700>int</span> BST<span style=color:#666>::</span>insertAVL(BiNode<span style=color:#666>*&amp;</span> t, <span style=color:#0b0;font-weight:700>int</span> key, <span style=color:#0b0;font-weight:700>bool</span><span style=color:#666>&amp;</span> taller) {
-	<span style=color:#a2f;font-weight:700>if</span> (<span style=color:#666>!</span>t) {
-		t <span style=color:#666>=</span> <span style=color:#a2f;font-weight:700>new</span> BiNode(key, <span style=color:#666>0</span>);
-		taller <span style=color:#666>=</span> <span style=color:#a2f>true</span>;
+<span style=color:#078;font-weight:700>int</span> BST<span style=color:#555>::</span>insertAVL(BiNode<span style=color:#555>*&amp;</span> t, <span style=color:#078;font-weight:700>int</span> key, <span style=color:#078;font-weight:700>bool</span><span style=color:#555>&amp;</span> taller) {
+	<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>t) {
+		t <span style=color:#555>=</span> <span style=color:#069;font-weight:700>new</span> BiNode(key, <span style=color:#f60>0</span>);
+		taller <span style=color:#555>=</span> <span style=color:#366>true</span>;
 	}
-	<span style=color:#a2f;font-weight:700>else</span> <span style=color:#00a000>if</span> (key <span style=color:#666>==</span> t<span style=color:#666>-&gt;</span>key) { <span style=color:#080;font-style:italic>//存在相同key节点，不再插入
-</span><span style=color:#080;font-style:italic></span>		taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>;
-		<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>;
+	<span style=color:#069;font-weight:700>else</span> <span style=color:#c0f>if</span> (key <span style=color:#555>==</span> t<span style=color:#555>-&gt;</span>key) { <span style=color:#09f;font-style:italic>//存在相同key节点，不再插入
+</span><span style=color:#09f;font-style:italic></span>		taller <span style=color:#555>=</span> <span style=color:#366>false</span>;
+		<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
 	}
-	<span style=color:#a2f;font-weight:700>else</span> <span style=color:#00a000>if</span> (key <span style=color:#666>&lt;</span> t<span style=color:#666>-&gt;</span>key) { <span style=color:#080;font-style:italic>//搜寻左子树
-</span><span style=color:#080;font-style:italic></span>		<span style=color:#a2f;font-weight:700>if</span> (<span style=color:#666>!</span>insertAVL(t<span style=color:#666>-&gt;</span>lChild, key, taller)) <span style=color:#080;font-style:italic>//未插入
-</span><span style=color:#080;font-style:italic></span>			<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>;
-		<span style=color:#a2f;font-weight:700>if</span> (taller)	<span style=color:#080;font-style:italic>//插入成功则树“长高”
-</span><span style=color:#080;font-style:italic></span>			<span style=color:#a2f;font-weight:700>switch</span> (t<span style=color:#666>-&gt;</span>bf) {
-			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>: leftBalance(t); taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>; <span style=color:#a2f;font-weight:700>break</span>;	<span style=color:#080;font-style:italic>//原本左侧高，左平衡处理
-</span><span style=color:#080;font-style:italic></span>			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>EH</span>:t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> LH; taller <span style=color:#666>=</span> <span style=color:#a2f>true</span>; <span style=color:#a2f;font-weight:700>break</span>; <span style=color:#080;font-style:italic>//原本等高，现在左侧高
-</span><span style=color:#080;font-style:italic></span>			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>:t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>; <span style=color:#a2f;font-weight:700>break</span>; <span style=color:#080;font-style:italic>//原本右侧高，现在等高
-</span><span style=color:#080;font-style:italic></span>			}
+	<span style=color:#069;font-weight:700>else</span> <span style=color:#c0f>if</span> (key <span style=color:#555>&lt;</span> t<span style=color:#555>-&gt;</span>key) { <span style=color:#09f;font-style:italic>//搜寻左子树
+</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>insertAVL(t<span style=color:#555>-&gt;</span>lChild, key, taller)) <span style=color:#09f;font-style:italic>//未插入
+</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
+		<span style=color:#069;font-weight:700>if</span> (taller)	<span style=color:#09f;font-style:italic>//插入成功则树“长高”
+</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>switch</span> (t<span style=color:#555>-&gt;</span>bf) {
+			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>: leftBalance(t); taller <span style=color:#555>=</span> <span style=color:#366>false</span>; <span style=color:#069;font-weight:700>break</span>;	<span style=color:#09f;font-style:italic>//原本左侧高，左平衡处理
+</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>EH</span>:t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> LH; taller <span style=color:#555>=</span> <span style=color:#366>true</span>; <span style=color:#069;font-weight:700>break</span>; <span style=color:#09f;font-style:italic>//原本等高，现在左侧高
+</span><span style=color:#09f;font-style:italic></span>			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>:t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; taller <span style=color:#555>=</span> <span style=color:#366>false</span>; <span style=color:#069;font-weight:700>break</span>; <span style=color:#09f;font-style:italic>//原本右侧高，现在等高
+</span><span style=color:#09f;font-style:italic></span>			}
 	}
-	<span style=color:#a2f;font-weight:700>else</span> {	<span style=color:#080;font-style:italic>//搜寻右子树
-</span><span style=color:#080;font-style:italic></span>		<span style=color:#a2f;font-weight:700>if</span> (<span style=color:#666>!</span>insertAVL(t<span style=color:#666>-&gt;</span>rChild, key, taller))
-			<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>;
-		<span style=color:#a2f;font-weight:700>if</span>(taller)
-			<span style=color:#a2f;font-weight:700>switch</span> (t<span style=color:#666>-&gt;</span>bf) {
-			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>LH</span>:t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> EH; taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>; <span style=color:#a2f;font-weight:700>break</span>;
-			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>EH</span>:t<span style=color:#666>-&gt;</span>bf <span style=color:#666>=</span> RH; taller <span style=color:#666>=</span> <span style=color:#a2f>true</span>; <span style=color:#a2f;font-weight:700>break</span>;
-			<span style=color:#a2f;font-weight:700>case</span> <span style=color:#a0a000>RH</span>:rightBalance(t); taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>; <span style=color:#a2f;font-weight:700>break</span>;
+	<span style=color:#069;font-weight:700>else</span> {	<span style=color:#09f;font-style:italic>//搜寻右子树
+</span><span style=color:#09f;font-style:italic></span>		<span style=color:#069;font-weight:700>if</span> (<span style=color:#555>!</span>insertAVL(t<span style=color:#555>-&gt;</span>rChild, key, taller))
+			<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
+		<span style=color:#069;font-weight:700>if</span>(taller)
+			<span style=color:#069;font-weight:700>switch</span> (t<span style=color:#555>-&gt;</span>bf) {
+			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>LH</span>:t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> EH; taller <span style=color:#555>=</span> <span style=color:#366>false</span>; <span style=color:#069;font-weight:700>break</span>;
+			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>EH</span>:t<span style=color:#555>-&gt;</span>bf <span style=color:#555>=</span> RH; taller <span style=color:#555>=</span> <span style=color:#366>true</span>; <span style=color:#069;font-weight:700>break</span>;
+			<span style=color:#069;font-weight:700>case</span> <span style=color:#99f>RH</span>:rightBalance(t); taller <span style=color:#555>=</span> <span style=color:#366>false</span>; <span style=color:#069;font-weight:700>break</span>;
 			}
 	}
-	<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>1</span>;
+	<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>1</span>;
 }
 
-<span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>inOrder(BiNode<span style=color:#666>*</span> p) {
-	<span style=color:#a2f;font-weight:700>if</span> (p) {
-		inOrder(p<span style=color:#666>-&gt;</span>lChild);
-		cout <span style=color:#666>&lt;&lt;</span> p<span style=color:#666>-&gt;</span>key <span style=color:#666>&lt;&lt;</span> <span style=color:#b44>&#39;:&#39;</span> <span style=color:#666>&lt;&lt;</span> p<span style=color:#666>-&gt;</span>bf <span style=color:#666>&lt;&lt;</span> <span style=color:#b44>&#39; &#39;</span>;
-		inOrder(p<span style=color:#666>-&gt;</span>rChild);
+<span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>inOrder(BiNode<span style=color:#555>*</span> p) {
+	<span style=color:#069;font-weight:700>if</span> (p) {
+		inOrder(p<span style=color:#555>-&gt;</span>lChild);
+		cout <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>key <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39;:&#39;</span> <span style=color:#555>&lt;&lt;</span> p<span style=color:#555>-&gt;</span>bf <span style=color:#555>&lt;&lt;</span> <span style=color:#c30>&#39; &#39;</span>;
+		inOrder(p<span style=color:#555>-&gt;</span>rChild);
 	}
 
-	<span style=color:#a2f;font-weight:700>return</span>;
+	<span style=color:#069;font-weight:700>return</span>;
 }
 
-<span style=color:#080;font-style:italic>// 二叉排序树初始化
-</span><span style=color:#080;font-style:italic></span>BST<span style=color:#666>::</span>BST() {
-	root <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
+<span style=color:#09f;font-style:italic>// 二叉排序树初始化
+</span><span style=color:#09f;font-style:italic></span>BST<span style=color:#555>::</span>BST() {
+	root <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
 }
 
-BST<span style=color:#666>::~</span>BST() {
-	root <span style=color:#666>=</span> <span style=color:#a2f>NULL</span>;
+BST<span style=color:#555>::~</span>BST() {
+	root <span style=color:#555>=</span> <span style=color:#366>NULL</span>;
 }
 
-<span style=color:#080;font-style:italic>// 插入元素并作平衡处理
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>insertAVL(<span style=color:#0b0;font-weight:700>int</span> key) {
-	<span style=color:#0b0;font-weight:700>bool</span> taller <span style=color:#666>=</span> <span style=color:#a2f>false</span>;
+<span style=color:#09f;font-style:italic>// 插入元素并作平衡处理
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>insertAVL(<span style=color:#078;font-weight:700>int</span> key) {
+	<span style=color:#078;font-weight:700>bool</span> taller <span style=color:#555>=</span> <span style=color:#366>false</span>;
 	insertAVL(root, key, taller);
 }
 
 
-<span style=color:#080;font-style:italic>// 中序遍历
-</span><span style=color:#080;font-style:italic></span><span style=color:#0b0;font-weight:700>void</span> BST<span style=color:#666>::</span>inOrder() {
+<span style=color:#09f;font-style:italic>// 中序遍历
+</span><span style=color:#09f;font-style:italic></span><span style=color:#078;font-weight:700>void</span> BST<span style=color:#555>::</span>inOrder() {
 	inOrder(root);
 }
 
-<span style=color:#0b0;font-weight:700>int</span> <span style=color:#00a000>main</span>(<span style=color:#0b0;font-weight:700>void</span>) {
-	<span style=color:#0b0;font-weight:700>int</span> t;
-	cin <span style=color:#666>&gt;&gt;</span> t;
-	<span style=color:#a2f;font-weight:700>while</span> (t<span style=color:#666>--</span>) {
-		<span style=color:#080;font-style:italic>// 构建二叉平衡树，并在插入元素时做平衡处理
-</span><span style=color:#080;font-style:italic></span>		<span style=color:#0b0;font-weight:700>int</span> n, elem;
-		cin <span style=color:#666>&gt;&gt;</span> n;
+<span style=color:#078;font-weight:700>int</span> <span style=color:#c0f>main</span>(<span style=color:#078;font-weight:700>void</span>) {
+	<span style=color:#078;font-weight:700>int</span> t;
+	cin <span style=color:#555>&gt;&gt;</span> t;
+	<span style=color:#069;font-weight:700>while</span> (t<span style=color:#555>--</span>) {
+		<span style=color:#09f;font-style:italic>// 构建二叉平衡树，并在插入元素时做平衡处理
+</span><span style=color:#09f;font-style:italic></span>		<span style=color:#078;font-weight:700>int</span> n, elem;
+		cin <span style=color:#555>&gt;&gt;</span> n;
 		BST tree;
-		<span style=color:#a2f;font-weight:700>while</span> (n<span style=color:#666>--</span>) {
-			cin <span style=color:#666>&gt;&gt;</span> elem;
+		<span style=color:#069;font-weight:700>while</span> (n<span style=color:#555>--</span>) {
+			cin <span style=color:#555>&gt;&gt;</span> elem;
 			tree.insertAVL(elem);
 		}
 		tree.inOrder();
-		cout <span style=color:#666>&lt;&lt;</span> endl;
+		cout <span style=color:#555>&lt;&lt;</span> endl;
 	}
-	<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>;
+	<span style=color:#069;font-weight:700>return</span> <span style=color:#f60>0</span>;
 }
 
-<span style=color:#080;font-style:italic>//https://www.jianshu.com/p/fdb3c8c331f1
-</span><span style=color:#080;font-style:italic></span>
-<span style=color:#080;font-style:italic>/*
-</span><span style=color:#080;font-style:italic>输入
-</span><span style=color:#080;font-style:italic>第一行输入测试数据组数t；
-</span><span style=color:#080;font-style:italic>每组测试数据，第一行输入结点数n, 第二行输入n个结点值。
-</span><span style=color:#080;font-style:italic>输出
-</span><span style=color:#080;font-style:italic>对每组测试数据，按中序遍历的顺序输出树中，结点值及平衡因子（测试数据没有空树），即结点值：平衡因子，不同结点之间间隔一个空格。
-</span><span style=color:#080;font-style:italic>
-</span><span style=color:#080;font-style:italic>样例输入
-</span><span style=color:#080;font-style:italic>8
-</span><span style=color:#080;font-style:italic>3
-</span><span style=color:#080;font-style:italic>64 5 1
-</span><span style=color:#080;font-style:italic>3
-</span><span style=color:#080;font-style:italic>64 5 13
-</span><span style=color:#080;font-style:italic>6
-</span><span style=color:#080;font-style:italic>64 78 5 1 13 15
-</span><span style=color:#080;font-style:italic>6
-</span><span style=color:#080;font-style:italic>64 78 5 1 13 10
-</span><span style=color:#080;font-style:italic>3
-</span><span style=color:#080;font-style:italic>64 78 100
-</span><span style=color:#080;font-style:italic>3
-</span><span style=color:#080;font-style:italic>64 80 70
-</span><span style=color:#080;font-style:italic>6
-</span><span style=color:#080;font-style:italic>64 30 80 90 70 68
-</span><span style=color:#080;font-style:italic>6
-</span><span style=color:#080;font-style:italic>64 30 80 90 70 75
-</span><span style=color:#080;font-style:italic>样例输出
-</span><span style=color:#080;font-style:italic>1:0 5:0 64:0
-</span><span style=color:#080;font-style:italic>5:0 13:0 64:0
-</span><span style=color:#080;font-style:italic>1:0 5:1 13:0 15:0 64:0 78:0
-</span><span style=color:#080;font-style:italic>1:0 5:0 10:0 13:0 64:-1 78:0
-</span><span style=color:#080;font-style:italic>64:0 78:0 100:0
-</span><span style=color:#080;font-style:italic>64:0 70:0 80:0
-</span><span style=color:#080;font-style:italic>30:0 64:0 68:0 70:0 80:-1 90:0
-</span><span style=color:#080;font-style:italic>30:0 64:1 70:0 75:0 80:0 90:0
-</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#09f;font-style:italic>//https://www.jianshu.com/p/fdb3c8c331f1
+</span><span style=color:#09f;font-style:italic></span>
+<span style=color:#09f;font-style:italic>/*
+</span><span style=color:#09f;font-style:italic>输入
+</span><span style=color:#09f;font-style:italic>第一行输入测试数据组数t；
+</span><span style=color:#09f;font-style:italic>每组测试数据，第一行输入结点数n, 第二行输入n个结点值。
+</span><span style=color:#09f;font-style:italic>输出
+</span><span style=color:#09f;font-style:italic>对每组测试数据，按中序遍历的顺序输出树中，结点值及平衡因子（测试数据没有空树），即结点值：平衡因子，不同结点之间间隔一个空格。
+</span><span style=color:#09f;font-style:italic>
+</span><span style=color:#09f;font-style:italic>样例输入
+</span><span style=color:#09f;font-style:italic>8
+</span><span style=color:#09f;font-style:italic>3
+</span><span style=color:#09f;font-style:italic>64 5 1
+</span><span style=color:#09f;font-style:italic>3
+</span><span style=color:#09f;font-style:italic>64 5 13
+</span><span style=color:#09f;font-style:italic>6
+</span><span style=color:#09f;font-style:italic>64 78 5 1 13 15
+</span><span style=color:#09f;font-style:italic>6
+</span><span style=color:#09f;font-style:italic>64 78 5 1 13 10
+</span><span style=color:#09f;font-style:italic>3
+</span><span style=color:#09f;font-style:italic>64 78 100
+</span><span style=color:#09f;font-style:italic>3
+</span><span style=color:#09f;font-style:italic>64 80 70
+</span><span style=color:#09f;font-style:italic>6
+</span><span style=color:#09f;font-style:italic>64 30 80 90 70 68
+</span><span style=color:#09f;font-style:italic>6
+</span><span style=color:#09f;font-style:italic>64 30 80 90 70 75
+</span><span style=color:#09f;font-style:italic>样例输出
+</span><span style=color:#09f;font-style:italic>1:0 5:0 64:0
+</span><span style=color:#09f;font-style:italic>5:0 13:0 64:0
+</span><span style=color:#09f;font-style:italic>1:0 5:1 13:0 15:0 64:0 78:0
+</span><span style=color:#09f;font-style:italic>1:0 5:0 10:0 13:0 64:-1 78:0
+</span><span style=color:#09f;font-style:italic>64:0 78:0 100:0
+</span><span style=color:#09f;font-style:italic>64:0 70:0 80:0
+</span><span style=color:#09f;font-style:italic>30:0 64:0 68:0 70:0 80:-1 90:0
+</span><span style=color:#09f;font-style:italic>30:0 64:1 70:0 75:0 80:0 90:0
+</span><span style=color:#09f;font-style:italic>*/</span>
 
 </code></pre></div></div><footer class=post-footer><div class=post-tags><a href=/tags/avl%e6%a0%91 rel=tag title=AVL树>#AVL树#</a>
 <a href=/tags/%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=平衡二叉树>#平衡二叉树#</a>
