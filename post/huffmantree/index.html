@@ -15,7 +15,7 @@
 <span>|
 <i class="fa fa-file-word-o fa-fw"></i>
 <span class=post-meta-item-text>字数：</span>
-<span class=leancloud-world-count>3620 字</span></span>
+<span class=leancloud-world-count>3873 字</span></span>
 <span>|
 <i class="fa fa-eye fa-fw"></i>
 <span class=post-meta-item-text>阅读：</span>
@@ -23,7 +23,7 @@
 <span id=/post/huffmantree/ class=leancloud_visitors data-flag-title=最优二叉树和赫夫曼编码>|
 <i class="fa fa-binoculars fa-fw"></i>
 <span class=post-meta-item-text>阅读次数：</span>
-<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>节点的<strong>带权路径长度</strong>是指<strong>根节点到该节点的路径长度</strong>与<strong>节点权值</strong>的<strong>乘积</strong>。最优二叉树（赫夫曼树or哈夫曼树）是指<strong>带权路径和</strong>最小的二叉树。构建赫夫曼树时，要使带权路径和最小，需要遵循<strong>权重大的节点</strong>离根节点更近。</p><p><img src=../HuffmanTreePic/1f01e27c9ea87c9c3a214fc36a7dbfa.png alt=1f01e27c9ea87c9c3a214fc36a7dbfa style=zoom:33%></p><h2 id=构建赫夫曼树>构建赫夫曼树</h2><p>有给定权值的n个节点：</p><ol><li><p>在n个节点中选出两个权值最小的节点，将两个节点组成一个二叉树，根结点的权值为左右子节点权值的和。</p><p><img src=../HuffmanTreePic/00900ca89da8eda12b48ade759aa85f.png alt=00900ca89da8eda12b48ade759aa85f style=zoom:33%></p></li><li><p>将上一步的根节点放入剩下的节点中，进行 1 。</p></li></ol><p><img src=../HuffmanTreePic/6f1b275d9cf0f38d3c6ea9bfbe89512.png alt=6f1b275d9cf0f38d3c6ea9bfbe89512 style=zoom:33%></p><h2 id=赫夫曼编码>赫夫曼编码</h2><p><strong>问题</strong>： 请设计变长的前缀码，对消息DEAACAAAAABA进行编码</p><p>对消息<strong>DEAACAAAAABA</strong>进行编码的前缀码编码方案很多，比如用ascii码之类的但是会很长因，因为每个字母的ascii码都要占<strong>1个byte</strong>。</p><p>消息中字符 A 出现了8次，字符 B、C、D 和 E 均只出现了1次；字符 A 用一个bit位表示，<strong>A=0</strong>，其他字符的编码均不能以0开头；</p><p><strong>B=10、C=11、D=110</strong>和 <strong>E=111</strong></p><p><strong>DEAACAAAAABA=110111001100000100</strong>。这样得到比较短的编码。</p><h3 id=编码规则>编码规则</h3><p><a href=https://blog.csdn.net/Young_IT/article/details/106730343><font color=CornflowerBlue>原文链接：哈夫曼编码详解——图解真能看了秒懂_Young_IT的博客-CSDN博客</font></a></p><h4 id=直接上题目>直接上题目:</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>已知字符集  { a, b, c, d, e, f }，
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>节点的<strong>带权路径长度</strong>是指<strong>根节点到该节点的路径长度</strong>与<strong>节点权值</strong>的<strong>乘积</strong>。最优二叉树（赫夫曼树or哈夫曼树）是指<strong>带权路径和</strong>最小的二叉树。构建赫夫曼树时，要使带权路径和最小，需要遵循<strong>权重大的节点</strong>离根节点更近。</p><p><img src=../HuffmanTreePic/1f01e27c9ea87c9c3a214fc36a7dbfa.png alt=1f01e27c9ea87c9c3a214fc36a7dbfa style=zoom:33%></p><h2 id=构建赫夫曼树>构建赫夫曼树</h2><p>有给定权值的n个节点：</p><ol><li><p>在n个节点中选出两个权值最小的节点，将两个节点组成一个二叉树，根结点的权值为左右子节点权值的和。</p><p><img src=../HuffmanTreePic/00900ca89da8eda12b48ade759aa85f.png alt=00900ca89da8eda12b48ade759aa85f style=zoom:33%></p></li><li><p>将上一步的根节点放入剩下的节点中，进行 1 。</p></li></ol><p><img src=../HuffmanTreePic/6f1b275d9cf0f38d3c6ea9bfbe89512.png alt=6f1b275d9cf0f38d3c6ea9bfbe89512 style=zoom:33%></p><h2 id=赫夫曼编码>赫夫曼编码</h2><p><strong>问题</strong>： 请设计变长的前缀码，对消息DEAACAAAAABA进行编码</p><p>对消息<strong>DEAACAAAAABA</strong>进行编码的前缀码编码方案很多，比如用ascii码之类的但是会很长因，因为每个字母的ascii码都要占<strong>1个byte</strong>。</p><p>消息中字符 A 出现了8次，字符 B、C、D 和 E 均只出现了1次；字符 A 用一个bit位表示，<strong>A=0</strong>，其他字符的编码均不能以0开头；</p><p><strong>B=10、C=11、D=110</strong>和 <strong>E=111</strong></p><p><strong>DEAACAAAAABA=110111001100000100</strong>。这样得到比较短的编码。</p><h3 id=编码规则>编码规则</h3><p><a href=https://blog.csdn.net/Young_IT/article/details/106730343><font color=CornflowerBlue>原文链接：哈夫曼编码详解——图解真能看了秒懂_Young_IT的博客-CSDN博客</font></a></p><h4 id=直接上题目>直接上题目:</h4><pre><code>已知字符集  { a, b, c, d, e, f }，
 若各字符出现的次数分别为{ 6, 3, 8, 2, 10, 4 }，
 则对应字符集中各字符的哈夫曼编码可能是：(2分)
 
@@ -34,8 +34,8 @@ B. 00, 100, 110, 000, 0010, 01
 C. 10, 1011, 11, 0011, 00, 010
 
 D. 0011, 10, 11, 0010, 01, 000
-</code></pre></div><h4 id=步骤一>步骤一：</h4><p>1.找最小两个次数（这里是2和3）</p><p><img src=../HuffmanTreePic/a1da8a80f5cdb28737236178731dd0c.png alt=a1da8a80f5cdb28737236178731dd0c style=zoom:50%></p><p>2.把他们放进树中（小左大右）</p><p>3.每次组合都多一个父节点（即2+3=5）</p><p><img src=../HuffmanTreePic/256d05cf81bf7184d98084c27015bee.png alt=256d05cf81bf7184d98084c27015bee style=zoom:33%></p><h4 id=步骤二>步骤二：</h4><p>1.再选出2个最小的数（排除上面已经选了的）——选出了4和6</p><p><img src=../HuffmanTreePic/2ab1a369dd7fc2d2a2f33beb4ccb7de.png alt=2ab1a369dd7fc2d2a2f33beb4ccb7de style=zoom:50%></p><p>2.因为4&lt;5 , 6>5（5为步骤一中组合后的父节点）</p><p>3.单独拿4来跟5组合（小左大右） 【如果拿出的2个数都比5小，则这2个数自己组合后跟5组合，下面提到】</p><p><img src=../HuffmanTreePic/d1518edb4ca8272ae3612ef3dcc042c.png alt=d1518edb4ca8272ae3612ef3dcc042c style=zoom:33%></p><p>####　步骤三：
-1.因为步骤二用掉了4，还没用6。现在取最小2个数</p><p><img src=../HuffmanTreePic/ecef694185aaadcab7549796280694a.png alt=ecef694185aaadcab7549796280694a style=zoom:50%></p><p>2.因为6 &lt; 9 , 8&lt; 9 所以6和8自己组合（小左大右） （组合后先放一边）</p><p><img src=../HuffmanTreePic/7f96a2fd57bf82e2d292a34e8a6311a.png alt=7f96a2fd57bf82e2d292a34e8a6311a style=zoom:33%></p><h4 id=步骤四>步骤四：</h4><p>1.取出最后10</p><p><img src=../HuffmanTreePic/ee3a8a0e62c067da7080e5d13fd8ee8.png alt=ee3a8a0e62c067da7080e5d13fd8ee8 style=zoom:50%></p><p>2.10要和这两个子树根节点最小的组合（9&lt;14,所以和9组合）（小左大右）</p><p><img src=../HuffmanTreePic/e36eaf93beebd513b9e5fcdc88fc81c.png alt=e36eaf93beebd513b9e5fcdc88fc81c style=zoom:33%></p><p>3.然后把14的子树组合上去（小左大右） 所以放左边</p><p><img src=../HuffmanTreePic/1004e88577251220e377d5d8ffe7572.png alt=1004e88577251220e377d5d8ffe7572 style=zoom:33%></p><h4 id=步骤五>步骤五：</h4><p>组合完哈夫曼树后,将对应的字符填上去</p><p><img src=../HuffmanTreePic/5fc05eacd8affd7ee64e2d8f372fc65.png alt=5fc05eacd8affd7ee64e2d8f372fc65 style=zoom:33%></p><h4 id=步骤六>步骤六：</h4><p>从根节点开始向下走往左为0，往右1。走到对应的字符的路径就是该字符的哈夫曼编码（左0右1）</p><p><img src=../HuffmanTreePic/b49eedfff8e6f9893bcba38e3328ea2.png alt=b49eedfff8e6f9893bcba38e3328ea2 style=zoom:50%></p><h4 id=最后结果>最后结果：</h4><table><thead><tr><th>字符</th><th>赫夫曼编码</th></tr></thead><tbody><tr><td>a</td><td>00</td></tr><tr><td>b</td><td>1011</td></tr><tr><td>c</td><td>01</td></tr><tr><td>d</td><td>1010</td></tr><tr><td>e</td><td>11</td></tr><tr><td>f</td><td>100</td></tr></tbody></table><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>所以最后答案 A
+</code></pre><h4 id=步骤一>步骤一：</h4><p>1.找最小两个次数（这里是2和3）</p><p><img src=../HuffmanTreePic/a1da8a80f5cdb28737236178731dd0c.png alt=a1da8a80f5cdb28737236178731dd0c style=zoom:50%></p><p>2.把他们放进树中（小左大右）</p><p>3.每次组合都多一个父节点（即2+3=5）</p><p><img src=../HuffmanTreePic/256d05cf81bf7184d98084c27015bee.png alt=256d05cf81bf7184d98084c27015bee style=zoom:33%></p><h4 id=步骤二>步骤二：</h4><p>1.再选出2个最小的数（排除上面已经选了的）——选出了4和6</p><p><img src=../HuffmanTreePic/2ab1a369dd7fc2d2a2f33beb4ccb7de.png alt=2ab1a369dd7fc2d2a2f33beb4ccb7de style=zoom:50%></p><p>2.因为4&lt;5 , 6>5（5为步骤一中组合后的父节点）</p><p>3.单独拿4来跟5组合（小左大右） 【如果拿出的2个数都比5小，则这2个数自己组合后跟5组合，下面提到】</p><p><img src=../HuffmanTreePic/d1518edb4ca8272ae3612ef3dcc042c.png alt=d1518edb4ca8272ae3612ef3dcc042c style=zoom:33%></p><p>####　步骤三：
+1.因为步骤二用掉了4，还没用6。现在取最小2个数</p><p><img src=../HuffmanTreePic/ecef694185aaadcab7549796280694a.png alt=ecef694185aaadcab7549796280694a style=zoom:50%></p><p>2.因为6 &lt; 9 , 8&lt; 9 所以6和8自己组合（小左大右） （组合后先放一边）</p><p><img src=../HuffmanTreePic/7f96a2fd57bf82e2d292a34e8a6311a.png alt=7f96a2fd57bf82e2d292a34e8a6311a style=zoom:33%></p><h4 id=步骤四>步骤四：</h4><p>1.取出最后10</p><p><img src=../HuffmanTreePic/ee3a8a0e62c067da7080e5d13fd8ee8.png alt=ee3a8a0e62c067da7080e5d13fd8ee8 style=zoom:50%></p><p>2.10要和这两个子树根节点最小的组合（9&lt;14,所以和9组合）（小左大右）</p><p><img src=../HuffmanTreePic/e36eaf93beebd513b9e5fcdc88fc81c.png alt=e36eaf93beebd513b9e5fcdc88fc81c style=zoom:33%></p><p>3.然后把14的子树组合上去（小左大右） 所以放左边</p><p><img src=../HuffmanTreePic/1004e88577251220e377d5d8ffe7572.png alt=1004e88577251220e377d5d8ffe7572 style=zoom:33%></p><h4 id=步骤五>步骤五：</h4><p>组合完哈夫曼树后,将对应的字符填上去</p><p><img src=../HuffmanTreePic/5fc05eacd8affd7ee64e2d8f372fc65.png alt=5fc05eacd8affd7ee64e2d8f372fc65 style=zoom:33%></p><h4 id=步骤六>步骤六：</h4><p>从根节点开始向下走往左为0，往右1。走到对应的字符的路径就是该字符的哈夫曼编码（左0右1）</p><p><img src=../HuffmanTreePic/b49eedfff8e6f9893bcba38e3328ea2.png alt=b49eedfff8e6f9893bcba38e3328ea2 style=zoom:50%></p><h4 id=最后结果>最后结果：</h4><table><thead><tr><th>字符</th><th>赫夫曼编码</th></tr></thead><tbody><tr><td>a</td><td>00</td></tr><tr><td>b</td><td>1011</td></tr><tr><td>c</td><td>01</td></tr><tr><td>d</td><td>1010</td></tr><tr><td>e</td><td>11</td></tr><tr><td>f</td><td>100</td></tr></tbody></table><pre><code>所以最后答案 A
 
 已知字符集{ a, b, c, d, e, f }，
 若各字符出现的次数分别为{ 6, 3, 8, 2, 10, 4 }，
@@ -48,18 +48,165 @@ B. 00, 100, 110, 000, 0010, 01
 C. 10, 1011, 11, 0011, 00, 010
 
 D. 0011, 10, 11, 0010, 01, 000
-</code></pre></div><p><code>版权声明：本文为CSDN博主「Young_IT」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。原文链接：https://blog.csdn.net/Young_IT/article/details/106730343</code></p><h3 id=参考代码>参考代码</h3><h4 id=输入>输入</h4><p>第一行输入t，表示有t个测试实例
+</code></pre><p><code>版权声明：本文为CSDN博主「Young_IT」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。原文链接：https://blog.csdn.net/Young_IT/article/details/106730343</code></p><h3 id=参考代码>参考代码</h3><h4 id=输入>输入</h4><p>第一行输入t，表示有t个测试实例
 第二行先输入n，表示第1个实例有n个权值，接着输入n个权值，权值全是小于1万的正整数
 依此类推</p><h4 id=输出>输出</h4><p>逐行输出每个权值对应的编码，格式如下：权值-编码
 即每行先输出1个权值，再输出一个短划线，再输出对应编码，接着下一行输入下一个权值和编码。
-以此类推</p><h4 id=样例输入>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>1
+以此类推</p><h4 id=样例输入>样例输入</h4><pre><code>1
 5 15 4 4 3 2
-</code></pre></div><h4 id=样例输出>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>15-1
+</code></pre><h4 id=样例输出>样例输出</h4><pre><code>15-1
 4-010
 4-011
 3-001
 2-000
-</code></pre></div><h4 id=实现代码>实现代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#000;font-weight:700>const</span> <span style=color:#458;font-weight:700>int</span> MaxW <span style=color:#000;font-weight:700>=</span> <span style=color:#099>9999999</span>;  <span style=color:#998;font-style:italic>// 假设结点权值不超过9999999
+</code></pre><h4 id=实现代码>实现代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">112
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">113
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">114
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">115
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">116
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">117
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">118
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">119
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">120
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">121
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">122
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">123
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">124
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">126
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">127
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">128
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">129
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">130
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">131
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">132
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">133
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">134
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">135
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">136
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">137
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">138
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">139
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">140
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">141
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">142
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">143
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">144
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">145
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">146
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">147
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#000;font-weight:700>const</span> <span style=color:#458;font-weight:700>int</span> MaxW <span style=color:#000;font-weight:700>=</span> <span style=color:#099>9999999</span>;  <span style=color:#998;font-style:italic>// 假设结点权值不超过9999999
 </span><span style=color:#998;font-style:italic>// 定义huffman树结点类
 </span><span style=color:#998;font-style:italic></span><span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>HuffNode</span>
 {
@@ -206,12 +353,12 @@ D. 0011, 10, 11, 0010, 01, 000
     }
     <span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div><h3 id=解码参考代码>解码参考代码</h3><h4 id=输入-1>输入</h4><p>第一行输入t，表示有t个测试实例
+</code></pre></td></tr></table></div></div><h3 id=解码参考代码>解码参考代码</h3><h4 id=输入-1>输入</h4><p>第一行输入t，表示有t个测试实例
 第二行先输入n，表示第1个实例有n个权值，接着输入n个权值，权值全是小于1万的正整数
 第三行输入n个字母，表示与权值对应的字符
 第四行输入k，表示要输入k个编码串
 第五行起输入k个编码串
-以此类推输入下一个示例</p><h4 id=输出-1>输出</h4><p>每行输出解码后的字符串，如果解码失败直接输出字符串“error”，不要输出部分解码结果</p><h4 id=样例输入-1>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>2
+以此类推输入下一个示例</p><h4 id=输出-1>输出</h4><p>每行输出解码后的字符串，如果解码失败直接输出字符串“error”，不要输出部分解码结果</p><h4 id=样例输入-1>样例输入</h4><pre><code>2
 5 15 4 4 3 2
 A B C D E
 3
@@ -224,13 +371,76 @@ A B C D
 1010000
 111011
 111110111
-</code></pre></div><h4 id=样例输出-1>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>AAAAA
+</code></pre><h4 id=样例输出-1>样例输出</h4><pre><code>AAAAA
 ABEAD
 error
 BBAAA
 error
 DCD
-</code></pre></div><h4 id=实现代码-1>实现代码</h4><p>只需在上文赫夫曼树实现代码中加入 Coding 方法和 Decoding 方法的实现。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#998;font-style:italic>//解码方法
+</code></pre><h4 id=实现代码-1>实现代码</h4><p>只需在上文赫夫曼树实现代码中加入 Coding 方法和 Decoding 方法的实现。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#998;font-style:italic>//解码方法
 </span><span style=color:#998;font-style:italic></span><span style=color:#458;font-weight:700>int</span> HuffMan<span style=color:#000;font-weight:700>::</span>Decode(<span style=color:#000;font-weight:700>const</span> string codestr, <span style=color:#458;font-weight:700>char</span> txtstr[]) {
     <span style=color:#458;font-weight:700>int</span> i, k, c;
     <span style=color:#458;font-weight:700>char</span> ch;
@@ -293,19 +503,62 @@ DCD
     }
     <span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div><h2 id=一道算法题>一道算法题</h2><h3 id=赫夫曼编码长度>赫夫曼编码长度</h3><h4 id=题目描述>题目描述</h4><p>每行一个大小写英文字母组成的字符串，长度不大于 1000，通过前缀编码后最短的编码长度。</p><h4 id=输入-2>输入</h4><p>第一行输入一个整数t，表示有t组测试数据；</p><p>接下来输入t组测试数据，每组数据一行，大小写英文字母。</p><h4 id=输出-2>输出</h4><p>每组数据输出赫夫曼编码长度</p><h4 id=样例输入-2>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>4
+</code></pre></td></tr></table></div></div><h2 id=一道算法题>一道算法题</h2><h3 id=赫夫曼编码长度>赫夫曼编码长度</h3><h4 id=题目描述>题目描述</h4><p>每行一个大小写英文字母组成的字符串，长度不大于 1000，通过前缀编码后最短的编码长度。</p><h4 id=输入-2>输入</h4><p>第一行输入一个整数t，表示有t组测试数据；</p><p>接下来输入t组测试数据，每组数据一行，大小写英文字母。</p><h4 id=输出-2>输出</h4><p>每组数据输出赫夫曼编码长度</p><h4 id=样例输入-2>样例输入</h4><pre><code>4
 AABBCCDEEEE
 AAABCCC
 BBACB
 tPvlQHFbPN
-</code></pre></div><h4 id=样例输出-2>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>25
+</code></pre><h4 id=样例输出-2>样例输出</h4><pre><code>25
 11
 7
 32
-</code></pre></div><h4 id=题目解析>题目解析</h4><p>`
+</code></pre><h4 id=题目解析>题目解析</h4><p>`
 本题如果真要用哈夫曼来建树，计算值会非常复杂。</p><p>首先要能够发现规律：哈夫曼树的编码长度等于各个叶节点权值与路径长度乘积之和，同时这个值等于非叶节点之和。</p><p>采用优先队列模拟哈夫曼树的建立。采用map记录字符与出现的次数，将每个字符的次数依次加入优先队列（数值小的在队头），每一次从队列中出队最小的两个，相加后再加入队列中。用ans记录每一次相加和temp值之和，当队列中剩下一个元素时，ans的值即为所求</p><p>知识点：
 <code>priority_queue</code> 优先队列：</p><p><code>priority_queue&lt;int>q;</code> 默认为数字（字典序）大的值在队首top，等价于<code>priority_queue&lt;int, vector&lt;int>, less&lt;int> >q;</code></p><p><code>priority_queue&lt;int, vector&lt;int>, greater&lt;int> >q;</code> 表示数字（字典序）小的在队首</p><p><code>版权声明：本文为CSDN博主「julia7_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/weixin_35093872/article/details/88055475</code></p><h4 id=ac代码>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+原文链接：https://blog.csdn.net/weixin_35093872/article/details/88055475</code></p><h4 id=ac代码>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;string&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;cstring&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
@@ -348,7 +601,7 @@ tPvlQHFbPN
     }
     <span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%9c%80%e4%bc%98%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=最优二叉树>#最优二叉树#</a>
+</code></pre></td></tr></table></div></div></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%9c%80%e4%bc%98%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=最优二叉树>#最优二叉树#</a>
 <a href=/tags/%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=二叉树>#二叉树#</a>
 <a href=/tags/%e7%ae%97%e6%b3%95 rel=tag title=算法>#算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/wechat.jpg width=129px height=129px><div style=text-align:center>交个朋友@_@</div></div><div class=article-copyright-info><p><span>声明：</span>最优二叉树和赫夫曼编码</p><p><span>链接：</span>https://yinan-hong.github.io/post/huffmantree/</p><p><span>作者：</span>兔楠</p><p><span>声明： </span>本站文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/3.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，打赏可以随意 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');qr.style.display==='none'?qr.style.display='block':qr.style.display='none'">
 <span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.jpg alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.jpg alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://yinan-hong.github.io/post/wechatpicdecrypt/ rel=next title=微信图片dat格式解码><i class="fa fa-chevron-left"></i> 微信图片dat格式解码</a></div><div class="post-nav-prev post-nav-item"><a href=https://yinan-hong.github.io/post/binarytree/ rel=prev title=二叉树从0到1>二叉树从0到1
@@ -377,4 +630,4 @@ GitHub</a></span></div><div class="links-of-blogroll motion-element links-of-blo
 <a href=https://www.github.com style=font-weight:700 target=_blank>Github</a></span>
 <span class=separator-line>/</span>
 <span class=license-num><a href=http://beian.miit.gov.cn target=_blank>粤ICP备no_such_thing号</a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i>
-<span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.main').css('padding-bottom'),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}}),$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100)})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=$('.header-inner').height(),d=$('.sidebar-inner').height(),a=c+d+50,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('height',a+50),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initScrollSpy(),initAffix(),initTOCDimension(),$('.post-body').viewer(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script><script src=//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js></script><script type=text/javascript>new Waline({el:'#wcomments',visitor:!0,placeholder:' 评论功能仍在开发中，暂未上线... ',requiredFields:['nick','mail'],serverURL:"https://bwc-r7t6uo7zv-yinan-hong.vercel.app",lang:"zh-cn"})</script><script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6091f652e3a51633"></script><script>(function(a,e,f,g,b,c,d){a.DaoVoiceObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,c.charset="utf-8",d.parentNode.insertBefore(c,d)})(window,document,"script",('https:'==document.location.protocol?'https:':'http:')+"//widget.daovoice.io/widget/Your DaoVoiceId.js","daovoice")</script><script type=text/javascript>$(function(){document.body.clientWidth>800&&(daovoice('init',{app_id:"Your DaoVoiceId"}),daovoice('update'))})</script></body></html>
+<span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.main').css('padding-bottom'),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}}),$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100)})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=$('.header-inner').height(),d=$('.sidebar-inner').height(),a=c+d+50,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('height',a+50),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initScrollSpy(),initAffix(),initTOCDimension(),$('.post-body').viewer(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script><script src=//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js></script><script type=text/javascript>new Waline({el:'#wcomments',visitor:!0,placeholder:' 评论功能仍在开发中，暂未上线... ',requiredFields:['nick','mail'],serverURL:"https://bwc-r7t6uo7zv-yinan-hong.vercel.app",lang:"zh-cn"})</script><script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6091f652e3a51633"></script></body></html>

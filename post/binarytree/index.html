@@ -15,36 +15,74 @@
 <span>|
 <i class="fa fa-file-word-o fa-fw"></i>
 <span class=post-meta-item-text>字数：</span>
-<span class=leancloud-world-count>6496 字</span></span>
+<span class=leancloud-world-count>7260 字</span></span>
 <span>|
 <i class="fa fa-eye fa-fw"></i>
 <span class=post-meta-item-text>阅读：</span>
-<span class=leancloud-view-count>13分钟</span></span>
+<span class=leancloud-view-count>15分钟</span></span>
 <span id=/post/binarytree/ class=leancloud_visitors data-flag-title=二叉树从0到1>|
 <i class="fa fa-binoculars fa-fw"></i>
 <span class=post-meta-item-text>阅读次数：</span>
-<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>本文介绍关于二叉树的一些基本概念，典型操作，和我做过的比较入门的算法题。所以本文比较适合初学算法的同学，或者用来快速复习什么的。如果是对二叉树的算法比较熟悉的同学，建议可以直接去刷相关的算法题。</p><h2 id=二叉树概念>二叉树概念</h2><p>二叉树就是每个节点最多有两个子节点的树。每个节点的内存大小包括【要存储的数据】、【指向子节点的两个指针】。</p><p><img src=../BinaryTreePic/1.png alt></p><p>需要了解的几个概念，图中Tree 1就是一般的二叉树，Tree 2是<strong>完全二叉树</strong>，Tree 3是<strong>满二叉树</strong>。<strong>完全二叉树</strong>除最下面一层，其余层的节点个数必须达到最大，最底层节点全部靠左排列。<strong>满二叉树</strong>则是所有层的结点个数都需达到最大，显然满二叉树都是完全二叉树。</p><p><img src=../BinaryTreePic/2.png alt></p><p>像上图的数据结构中，发现6、8、9号位置都没有存到数据，会有空间的浪费。而用<strong>完全二叉树</strong>存储就可以避免这样的问题。实际上所有的树结构都是可以转化成完全二叉树的。</p><h2 id=二叉树的遍历操作>二叉树的遍历操作</h2><p>遍历就是逐个访问所有节点，而根据<strong>访问根节点和左右子节点顺序</strong>的不同，二叉树的遍历分为<strong>前序、中序、后序遍历</strong>。如果把一个运算式的字符串存入二叉树，按照中序输出得到"1+2*3-4"这样的中缀表达式，那按照前序输出就会得到它的<strong>波兰式</strong>，按后序输出就会得到它的<strong>逆波兰式</strong>。</p><p><img src=../BinaryTreePic/3.png alt=4e71b9f29ad47929213242aa8683a42 style=zoom:67%></p><h3 id=前序遍历>前序遍历</h3><p><img src=../BinaryTreePic/4.jpg alt></p><p>前序遍历就是先访问根节点，再访问左子节点，再访问右子节点。上图的输出结果为ABDEGHCF。一些简单的算法题会给出前序遍历的数据，需要<strong>通过前序遍历的数据建立二叉树</strong>，然后进行其他二叉树的访问操作。</p><p>前序遍历的代码（递归实现）很简单：</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>pre_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>本文介绍关于二叉树的一些基本概念，典型操作，和我做过的比较入门的算法题。所以本文比较适合初学算法的同学，或者用来快速复习什么的。如果是对二叉树的算法比较熟悉的同学，建议可以直接去刷相关的算法题。</p><h2 id=二叉树概念>二叉树概念</h2><p>二叉树就是每个节点最多有两个子节点的树。每个节点的内存大小包括【要存储的数据】、【指向子节点的两个指针】。</p><p><img src=../BinaryTreePic/1.png alt></p><p>需要了解的几个概念，图中Tree 1就是一般的二叉树，Tree 2是<strong>完全二叉树</strong>，Tree 3是<strong>满二叉树</strong>。<strong>完全二叉树</strong>除最下面一层，其余层的节点个数必须达到最大，最底层节点全部靠左排列。<strong>满二叉树</strong>则是所有层的结点个数都需达到最大，显然满二叉树都是完全二叉树。</p><p><img src=../BinaryTreePic/2.png alt></p><p>像上图的数据结构中，发现6、8、9号位置都没有存到数据，会有空间的浪费。而用<strong>完全二叉树</strong>存储就可以避免这样的问题。实际上所有的树结构都是可以转化成完全二叉树的。</p><h2 id=二叉树的遍历操作>二叉树的遍历操作</h2><p>遍历就是逐个访问所有节点，而根据<strong>访问根节点和左右子节点顺序</strong>的不同，二叉树的遍历分为<strong>前序、中序、后序遍历</strong>。如果把一个运算式的字符串存入二叉树，按照中序输出得到"1+2*3-4"这样的中缀表达式，那按照前序输出就会得到它的<strong>波兰式</strong>，按后序输出就会得到它的<strong>逆波兰式</strong>。</p><p><img src=../BinaryTreePic/3.png alt=4e71b9f29ad47929213242aa8683a42 style=zoom:67%></p><h3 id=前序遍历>前序遍历</h3><p><img src=../BinaryTreePic/4.jpg alt></p><p>前序遍历就是先访问根节点，再访问左子节点，再访问右子节点。上图的输出结果为ABDEGHCF。一些简单的算法题会给出前序遍历的数据，需要<strong>通过前序遍历的数据建立二叉树</strong>，然后进行其他二叉树的访问操作。</p><p>前序遍历的代码（递归实现）很简单：</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>pre_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
 	<span style=color:#000;font-weight:700>if</span> (n <span style=color:#000;font-weight:700>!=</span> <span style=color:#0086b3>NULL</span>) {
 		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> n<span style=color:#000;font-weight:700>-&gt;</span>data <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span>; <span style=color:#998;font-style:italic>//访问本节点数据
 </span><span style=color:#998;font-style:italic></span>		pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>left);
 		pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>right);
 	}
 }
-</code></pre></div><h3 id=中序遍历>中序遍历</h3><p>中序遍历是先访问左子节点，再访问根节点，再访问右子节点。按上面同一棵树的输出结果应为DBGEHACF，图我就不画了太麻烦了&mldr;代码的区别其实就是换一下顺序。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>in_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
+</code></pre></td></tr></table></div></div><h3 id=中序遍历>中序遍历</h3><p>中序遍历是先访问左子节点，再访问根节点，再访问右子节点。按上面同一棵树的输出结果应为DBGEHACF，图我就不画了太麻烦了&mldr;代码的区别其实就是换一下顺序。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>in_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
     <span style=color:#000;font-weight:700>if</span> (n <span style=color:#000;font-weight:700>!=</span> <span style=color:#0086b3>NULL</span>) {
         pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>left);
         cout <span style=color:#000;font-weight:700>&lt;&lt;</span> n<span style=color:#000;font-weight:700>-&gt;</span>data <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span>; <span style=color:#998;font-style:italic>//访问本节点数据
 </span><span style=color:#998;font-style:italic></span>        pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>right);
     }
 }
-</code></pre></div><h3 id=后序遍历>后序遍历</h3><p>后序遍历是先访问左右节点，最后访问根节点。上面那棵树的后序输出为DGHEBFCA。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>in_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
+</code></pre></td></tr></table></div></div><h3 id=后序遍历>后序遍历</h3><p>后序遍历是先访问左右节点，最后访问根节点。上面那棵树的后序输出为DGHEBFCA。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">7
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#458;font-weight:700>void</span> <span style=color:#900;font-weight:700>in_order</span>(Node<span style=color:#000;font-weight:700>*</span> n) {
     <span style=color:#000;font-weight:700>if</span> (n <span style=color:#000;font-weight:700>!=</span> <span style=color:#0086b3>NULL</span>) {
         pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>left);
         pre_order(n<span style=color:#000;font-weight:700>-&gt;</span>right);
         cout <span style=color:#000;font-weight:700>&lt;&lt;</span> n<span style=color:#000;font-weight:700>-&gt;</span>data <span style=color:#000;font-weight:700>&lt;&lt;</span> <span style=color:#d14>&#39; &#39;</span>; <span style=color:#998;font-style:italic>//访问本节点数据
 </span><span style=color:#998;font-style:italic></span>    }
 }
-</code></pre></div><h3 id=逐层遍历>逐层遍历</h3><p>逐层遍历的意思是从左到右访问每一层的每一个节点。还是上面那颗树，逐层输出就是ABCDEFGH。逐层输出要用到<strong>队列</strong>，每一层的节点会先被放入队列，访问每一个节点时，将子节点放入队尾。每次循环取出队首的节点，就能实现从上到下，从左到右访问所有节点。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre></td></tr></table></div></div><h3 id=逐层遍历>逐层遍历</h3><p>逐层遍历的意思是从左到右访问每一层的每一个节点。还是上面那颗树，逐层输出就是ABCDEFGH。逐层输出要用到<strong>队列</strong>，每一层的节点会先被放入队列，访问每一个节点时，将子节点放入队尾。每次循环取出队首的节点，就能实现从上到下，从左到右访问所有节点。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#458;font-weight:700>void</span> BinaryTree<span style=color:#000;font-weight:700>::</span>level_order() {
 	<span style=color:#000;font-weight:700>if</span> (root <span style=color:#000;font-weight:700>==</span> <span style=color:#0086b3>NULL</span>)
 		<span style=color:#000;font-weight:700>return</span>;
@@ -61,7 +99,186 @@
 			q.push(n<span style=color:#000;font-weight:700>-&gt;</span>right);
 	}
 }
-</code></pre></div><h3 id=我写的一个二叉树模板类>我写的一个二叉树模板类</h3><p>因为想着这样不用改很多代码就可以实现存不同数据类型二叉树，所以就无聊写了个模板。这个类实现了二叉树中后序遍历，层序遍历，计算高度这些常用操作。</p><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre></td></tr></table></div></div><h3 id=我写的一个二叉树模板类>我写的一个二叉树模板类</h3><p>因为想着这样不用改很多代码就可以实现存不同数据类型二叉树，所以就无聊写了个模板。这个类实现了二叉树中后序遍历，层序遍历，计算高度这些常用操作。</p><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">112
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">113
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">114
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">115
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">116
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">117
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">118
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">119
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">120
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">121
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">122
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">123
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">124
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">126
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">127
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">128
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">129
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">130
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">131
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">132
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">133
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">134
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">135
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">136
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">137
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">138
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">139
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">140
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">141
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">142
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">143
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">144
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">145
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">146
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">147
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">148
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">149
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">150
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">151
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">152
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">153
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">154
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">155
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">156
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">157
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">158
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">159
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">160
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">161
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">162
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">163
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">164
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">165
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">166
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">167
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">168
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">169
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">170
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">171
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">172
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">173
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">174
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">175
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">176
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">177
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">178
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">179
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;string&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
@@ -240,16 +457,127 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 	cout <span style=color:#000;font-weight:700>&lt;&lt;</span> a.get_height() <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
 	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div><h2 id=一些比较常规的算法题>一些比较常规的算法题</h2><p>大部分是学校数据结构课做的。挑一些比较有意思的放出来，会尽量注释详细。</p><h3 id=二叉树结点的最大距离>二叉树结点的最大距离</h3><h4 id=题目描述>题目描述</h4><p>二叉树两个结点的距离是一个结点经过双亲结点，祖先结点等中间结点到达另一个结点经过的分支数。二叉树结点的最大距离是所有结点间距离的最大值。例如，下图所示二叉树结点最大距离是3，C和D的距离。
+</code></pre></td></tr></table></div></div><h2 id=一些比较常规的算法题>一些比较常规的算法题</h2><p>大部分是学校数据结构课做的。挑一些比较有意思的放出来，会尽量注释详细。</p><h3 id=二叉树结点的最大距离>二叉树结点的最大距离</h3><h4 id=题目描述>题目描述</h4><p>二叉树两个结点的距离是一个结点经过双亲结点，祖先结点等中间结点到达另一个结点经过的分支数。二叉树结点的最大距离是所有结点间距离的最大值。例如，下图所示二叉树结点最大距离是3，C和D的距离。
 二叉树用先序遍历顺序创建，#表示空树。计算二叉树结点最大距离和最大距离的两个结点(假设二叉树中取最大距离的两个结点唯一）。</p><p><img src=../BinaryTreePic/5.png alt style=zoom:50%></p><h4 id=输入>输入</h4><p>测试次数T
-第2行之后的T行，每行为一棵二叉树先序遍历结果（#表示空树）</p><h4 id=输出>输出</h4><p>对每棵二叉树，输出树的结点最大距离和最大距离的结点，输出格式见样例。</p><h4 id=样例输入>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
+第2行之后的T行，每行为一棵二叉树先序遍历结果（#表示空树）</p><h4 id=输出>输出</h4><p>对每棵二叉树，输出树的结点最大距离和最大距离的结点，输出格式见样例。</p><h4 id=样例输入>样例输入</h4><pre><code>3
 A##
 ABC##EF#G###D##
 ABEH###F#K###
-</code></pre></div><h4 id=样例输出>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>0:
+</code></pre><h4 id=样例输出>样例输出</h4><pre><code>0:
 5:G D
 4:H K
-</code></pre></div><h4 id=题目解析>题目解析</h4><p><img src=../BinaryTreePic/6.jpg alt></p><p>对每个节点，子树的最长路径有两种可能，一种是从根节点到叶子结点（左），一种是从叶子结点到另一个叶子节点（右），而leaf to leaf最大距离 = 根to左侧最深 + 根to右侧最深。所以只用递归采用后序遍历，对每个节点计算最长的根叶子距离和叶子到叶子距离，取较大的那个作为max distance返回。这样到根节点时，就能得到最大的节点路径。</p><h4 id=ac代码>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=题目解析>题目解析</h4><p><img src=../BinaryTreePic/6.jpg alt></p><p>对每个节点，子树的最长路径有两种可能，一种是从根节点到叶子结点（左），一种是从叶子结点到另一个叶子节点（右），而leaf to leaf最大距离 = 根to左侧最深 + 根to右侧最深。所以只用递归采用后序遍历，对每个节点计算最长的根叶子距离和叶子到叶子距离，取较大的那个作为max distance返回。这样到根节点时，就能得到最大的节点路径。</p><h4 id=ac代码>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;string.h&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;queue&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
@@ -360,21 +688,113 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 	}
 	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div><h3 id=求根到叶子结点路径上权值的和>求根到叶子结点路径上权值的和</h3><h4 id=题目描述-1>题目描述</h4><p>给定一颗二叉树的逻辑结构（先序遍历的结果，空树用字符‘0’表示，例如AB0C00D00），建立该二叉树的二叉链式存储结构
+</code></pre></td></tr></table></div></div><h3 id=求根到叶子结点路径上权值的和>求根到叶子结点路径上权值的和</h3><h4 id=题目描述-1>题目描述</h4><p>给定一颗二叉树的逻辑结构（先序遍历的结果，空树用字符‘0’表示，例如AB0C00D00），建立该二叉树的二叉链式存储结构
 二叉树的每个结点都有一个权值，从根结点到每个叶子结点将形成一条路径，每条路径的权值等于路径上所有结点的权值和。编程求出二叉树的最大路径权值。如下图所示，共有4个叶子即有4条路径</p><p>路径1权值=5 + 4 + 11 + 7 = 27 路径2权值=5 + 4 + 11 + 2 = 22
 路径3权值=5 + 8 + 13 = 26 路径4权值=5 + 8 + 4 + 1 = 18
 可计算出最大路径权值是27</p><p>该树输入的先序遍历结果为ABCD00E000FG00H0I00，各结点权值为：
 A-5，B-4，C-11，D-7，E-2，F-8，G-13，H-4，I-1</p><p><img src=../BinaryTreePic/7.png alt=995ec06a8ed943fc06b350fc620126c style=zoom:50%></p><h4 id=输入-1>输入</h4><p>第一行输入一个整数t，表示有t个测试数据
 第二行输入一棵二叉树的先序遍历，每个结点用字母表示
 第三行先输入n表示二叉树的结点数量，然后输入每个结点的权值，权值顺序与前面结点输入顺序对应
-以此类推输入下一棵二叉树</p><h4 id=输出-1>输出</h4><p>每行输出每棵二叉树的最大路径权值，如果最大路径权值有重复，只输出1个</p><h4 id=样例输入-1>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>2
+以此类推输入下一棵二叉树</p><h4 id=输出-1>输出</h4><p>每行输出每棵二叉树的最大路径权值，如果最大路径权值有重复，只输出1个</p><h4 id=样例输入-1>样例输入</h4><pre><code>2
 AB0C00D00
 4 5 3 2 6
 ABCD00E000FG00H0I00
 9 5 4 11 7 2 8 13 4 1
-</code></pre></div><h4 id=样例输出-1>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>11
+</code></pre><h4 id=样例输出-1>样例输出</h4><pre><code>11
 27
-</code></pre></div><h4 id=题目解析-1>题目解析</h4><p>先序建树，然后后序遍历节点，记录访问过的节点的数据，访问根节点时比较取权值较大的子树。比如图中7>2，访问11时就取7。递归到最后得到的就是权值最大的数据。</p><p>其实可以优化，<strong>边建树边计算数据</strong>，效率会更高，但是做的时候没想到，就不写了。</p><h4 id=ac代码-1>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=题目解析-1>题目解析</h4><p>先序建树，然后后序遍历节点，记录访问过的节点的数据，访问根节点时比较取权值较大的子树。比如图中7>2，访问11时就取7。递归到最后得到的就是权值最大的数据。</p><p>其实可以优化，<strong>边建树边计算数据</strong>，效率会更高，但是做的时候没想到，就不写了。</p><h4 id=ac代码-1>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">92
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
 <span style=color:#458;font-weight:700>int</span> cnt;
 <span style=color:#458;font-weight:700>int</span><span style=color:#000;font-weight:700>*</span> dt;
@@ -466,15 +886,124 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 	}
 	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div><h3 id=后序遍历的非递归算法>后序遍历的非递归算法</h3><p>因为递归的实现是通过栈，递归到下一层的时候，把当前的函数压栈。所以如果有一棵树特别长，就会发生<strong>栈溢出</strong>。所有的递归，都是可以通过非递归的方式实现的，这就是这道算法题的背景知识&mldr;</p><h4 id=输入-2>输入</h4><p>第一行输入一个整数t，表示有t个测试数据
-第二行起输入二叉树先序遍历的结果，空树用字符‘0’表示，输入t行</p><h4 id=输出-2>输出</h4><p>逐行输出每个二叉树的后序遍历结果</p><h4 id=样例输入-2>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
+</code></pre></td></tr></table></div></div><h3 id=后序遍历的非递归算法>后序遍历的非递归算法</h3><p>因为递归的实现是通过栈，递归到下一层的时候，把当前的函数压栈。所以如果有一棵树特别长，就会发生<strong>栈溢出</strong>。所有的递归，都是可以通过非递归的方式实现的，这就是这道算法题的背景知识&mldr;</p><h4 id=输入-2>输入</h4><p>第一行输入一个整数t，表示有t个测试数据
+第二行起输入二叉树先序遍历的结果，空树用字符‘0’表示，输入t行</p><h4 id=输出-2>输出</h4><p>逐行输出每个二叉树的后序遍历结果</p><h4 id=样例输入-2>样例输入</h4><pre><code>3
 AB0C00D00
 ABC00D00EF000
 ABCD0000E0F00
-</code></pre></div><h4 id=样例输出-2>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>CBDA
+</code></pre><h4 id=样例输出-2>样例输出</h4><pre><code>CBDA
 CDBFEA
 DCBFEA
-</code></pre></div><h4 id=直接上代码>直接上代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=直接上代码>直接上代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;string&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;stack&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
@@ -583,9 +1112,9 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 		<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
 
-</code></pre></div><h3 id=用中后序输出的数据建树>用中后序输出的数据建树</h3><h4 id=题目描述-2>题目描述</h4><p>按中序遍历和后序遍历给出一棵二叉树，求这棵二叉树中叶子节点权值的最小值。
+</code></pre></td></tr></table></div></div><h3 id=用中后序输出的数据建树>用中后序输出的数据建树</h3><h4 id=题目描述-2>题目描述</h4><p>按中序遍历和后序遍历给出一棵二叉树，求这棵二叉树中叶子节点权值的最小值。
 输入保证叶子节点的权值各不相同。</p><h4 id=输入-3>输入</h4><p>第一行输入一个整数t，表示有t组测试数据。
-对于每组测试数据，首先输入一个整数N (1 &lt;= N &lt;= 10000)，代表二叉树有N个节点，接下来的一行输入这棵二叉树中序遍历的结果，最后一行输入这棵二叉树后序遍历的结果。</p><h4 id=输出-3>输出</h4><p>对于每组测试数据，输出一个整数，代表二叉树中叶子节点权值最小值。</p><h4 id=样例输入-3>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
+对于每组测试数据，首先输入一个整数N (1 &lt;= N &lt;= 10000)，代表二叉树有N个节点，接下来的一行输入这棵二叉树中序遍历的结果，最后一行输入这棵二叉树后序遍历的结果。</p><h4 id=输出-3>输出</h4><p>对于每组测试数据，输出一个整数，代表二叉树中叶子节点权值最小值。</p><h4 id=样例输入-3>样例输入</h4><pre><code>3
 7
 3 2 1 4 5 7 6
 3 1 2 5 6 7 4
@@ -593,10 +1122,98 @@ Node<span style=color:#000;font-weight:700>&lt;</span>T<span style=color:#000;fo
 8 3 11 7 16 18 12 5 1
 255
 255
-</code></pre></div><h4 id=样例输出-3>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>1
+</code></pre><h4 id=样例输出-3>样例输出</h4><pre><code>1
 3
 255
-</code></pre></div><h4 id=题目解析-2>题目解析</h4><p>因为后续输出的最后一个一定是根节点，就可以通过后序的数据<strong>在中序的数据中找到根节点</strong>，然后中序的数据中，<strong>根节点左边一定是左子树，右边一定是右子树</strong>。中序是先输出左子树，后序也是先输出左子树，找到后序的左子树部分的最后一个节点，就是左子树的根节点。详细的看代码。</p><h4 id=ac代码-2>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=题目解析-2>题目解析</h4><p>因为后续输出的最后一个一定是根节点，就可以通过后序的数据<strong>在中序的数据中找到根节点</strong>，然后中序的数据中，<strong>根节点左边一定是左子树，右边一定是右子树</strong>。中序是先输出左子树，后序也是先输出左子树，找到后序的左子树部分的最后一个节点，就是左子树的根节点。详细的看代码。</p><h4 id=ac代码-2>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">88
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
 
 <span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>Node</span> {
@@ -684,13 +1301,13 @@ Node<span style=color:#000;font-weight:700>*</span> BiTree<span style=color:#000
 		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> mytree.getMin() <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
 	}
 }
-</code></pre></div><h3 id=二叉树的中后序遍历及操作>二叉树的中后序遍历及操作</h3><h4 id=题目描述-3>题目描述</h4><p>按中序遍历和后序遍历给出一棵二叉树，现在有如下操作：</p><ol><li>UPDATE A B，将中序遍历中A位置（从1开始编号的下标）对应的在二叉树中的节点的权值改为B</li><li>QUERY，询问树上所有节点的权值，以及从根节点到该节点的路径权值之和</li><li>STOP，停止操作，STOP操作一定出现在最后
+</code></pre></td></tr></table></div></div><h3 id=二叉树的中后序遍历及操作>二叉树的中后序遍历及操作</h3><h4 id=题目描述-3>题目描述</h4><p>按中序遍历和后序遍历给出一棵二叉树，现在有如下操作：</p><ol><li>UPDATE A B，将中序遍历中A位置（从1开始编号的下标）对应的在二叉树中的节点的权值改为B</li><li>QUERY，询问树上所有节点的权值，以及从根节点到该节点的路径权值之和</li><li>STOP，停止操作，STOP操作一定出现在最后
 中序遍历和后序遍历的输入保证叶子节点的权值各不相同。但是，之后如果存在UPDATE操作，则<strong>UPDATE操作可能会使得两个或两个以上的叶子节点的权值相同</strong>。</li></ol><h4 id=输入-4>输入</h4><p>输入t组测试数据；
 接下来输入k组测试数据，对于每组测试数据：
 第一行输入这棵二叉树的结点数
 第二行输入这棵二叉树中序遍历的结果</p><p>第三行输入这棵二叉树后序遍历的结果
 接下来每一行输入一种操作，直到输入STOP操作时结束本组测试数据的输入。其中，QUERY操作次数 &lt;= 2，总操作数 &lt;= 104</p><h4 id=输出-4>输出</h4><p>对于每组测试数据：
-对于QUERY操作，按中序遍历输出节点的权值，以及从根节点到该节点路径权值之和。这里，我们认为根节点到其本身的路径权值之和为根节点的权值</p><h4 id=题目解析-3>题目解析</h4><p>因为update操作可能会导致权值相同，所以用权值查找节点可能找的不准，要用序号找，注意到这一点就应该没啥问题了。然后每查询一次就遍历一次其实效率会比较低，可以用一个指针数组，存序号对应的节点，然后update的时候从数组访问节点。那这么一看好像连建树都不用了&mldr;不过我做的时候没想到，用的update一次就遍历一次的方法QwQ</p><h4 id=样例输入-4>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>3
+对于QUERY操作，按中序遍历输出节点的权值，以及从根节点到该节点路径权值之和。这里，我们认为根节点到其本身的路径权值之和为根节点的权值</p><h4 id=题目解析-3>题目解析</h4><p>因为update操作可能会导致权值相同，所以用权值查找节点可能找的不准，要用序号找，注意到这一点就应该没啥问题了。然后每查询一次就遍历一次其实效率会比较低，可以用一个指针数组，存序号对应的节点，然后update的时候从数组访问节点。那这么一看好像连建树都不用了&mldr;不过我做的时候没想到，用的update一次就遍历一次的方法QwQ</p><h4 id=样例输入-4>样例输入</h4><pre><code>3
 7
 3 2 1 4 5 7 6
 3 1 2 5 6 7 4
@@ -710,7 +1327,7 @@ STOP
 255
 255
 STOP
-</code></pre></div><h4 id=样例输出-4>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>37 43
+</code></pre><h4 id=样例输出-4>样例输出</h4><pre><code>37 43
 2 6
 1 7
 4 4
@@ -733,7 +1350,112 @@ STOP
 16 33
 12 17
 18 35
-</code></pre></div><h4 id=ac代码-3>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=ac代码-3>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
 
 <span style=color:#000;font-weight:700>class</span> <span style=color:#458;font-weight:700>Node</span> {
@@ -838,17 +1560,59 @@ Node<span style=color:#000;font-weight:700>*</span> BiTree<span style=color:#000
 		cout <span style=color:#000;font-weight:700>&lt;&lt;</span> endl;
 	}
 }
-</code></pre></div><h3 id=falling-leaves-dfs求每一列权值的和>Falling Leaves （DFS求每一列权值的和）</h3><h4 id=题目描述-4>题目描述</h4><p>按先序遍历给出一棵二叉树，每个结点都有一个水平位置：左子结点在它左边一个单位，右子结点在右边1个单位。从左向右输出每个水平位置的所有节点的权值之和。
+</code></pre></td></tr></table></div></div><h3 id=falling-leaves-dfs求每一列权值的和>Falling Leaves （DFS求每一列权值的和）</h3><h4 id=题目描述-4>题目描述</h4><p>按先序遍历给出一棵二叉树，每个结点都有一个水平位置：左子结点在它左边一个单位，右子结点在右边1个单位。从左向右输出每个水平位置的所有节点的权值之和。
 例如：以下二叉树有三个水平位置，从左至右的输出是7,11,3。</p><p><img src=../BinaryTreePic/8.png alt=f851422df82b29b2006ceb74573b7dc style=zoom:50%></p><h4 id=输入-5>输入</h4><p>测试数据有多组，每组测试数据输入按先序遍历输入一棵二叉树，其中-1代表空节点（一棵树的节点数量不超过 103）
-当输入的二叉树是一棵空树时，结束输入。</p><h4 id=输出-5>输出</h4><p>对于每组测试数据，首先输出一行"Case x:"，其中x代表这是第x个测试数据的输出，然后从左到右输出每个水平位置所有节点的权值之和</p><h4 id=样例输入-5>样例输入</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>5 7 -1 6 -1 -1 3 -1 -1
+当输入的二叉树是一棵空树时，结束输入。</p><h4 id=输出-5>输出</h4><p>对于每组测试数据，首先输出一行"Case x:"，其中x代表这是第x个测试数据的输出，然后从左到右输出每个水平位置所有节点的权值之和</p><h4 id=样例输入-5>样例输入</h4><pre><code>5 7 -1 6 -1 -1 3 -1 -1
 8 2 9 -1 -1 6 5 -1 -1 12 -1 -1 3 7 -1 -1 -1
 -1
-</code></pre></div><h4 id=样例输出-5>样例输出</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>Case 1:
+</code></pre><h4 id=样例输出-5>样例输出</h4><pre><code>Case 1:
 7 11 3
 
 Case 2:
 9 7 21 15
-</code></pre></div><h4 id=题目解析-4>题目解析</h4><p>这个题目说的不是人话。用人话说是，输出每一竖列节点的权值和。其实这道题不用建树，大概判断一下最多可能有多少列，然后开个数组存每一竖列的权值和。因为先序的数据是根、左、右，所以只用写个巧妙的递归就能计算出结果。</p><h4 id=ac代码-4>AC代码</h4><div class=highlight><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
+</code></pre><h4 id=题目解析-4>题目解析</h4><p>这个题目说的不是人话。用人话说是，输出每一竖列节点的权值和。其实这道题不用建树，大概判断一下最多可能有多少列，然后开个数组存每一竖列的权值和。因为先序的数据是根、左、右，所以只用写个巧妙的递归就能计算出结果。</p><h4 id=ac代码-4>AC代码</h4><div class=highlight><div style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;iostream&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic>#include</span> <span style=color:#999;font-weight:700;font-style:italic>&lt;string.h&gt;</span><span style=color:#999;font-weight:700;font-style:italic>
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#000;font-weight:700>using</span> <span style=color:#000;font-weight:700>namespace</span> std;
 
@@ -890,7 +1654,7 @@ Case 2:
 	}
 	<span style=color:#000;font-weight:700>return</span> <span style=color:#099>0</span>;
 }
-</code></pre></div></div><footer class=post-footer><div class=post-tags><a href=/tags/%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=二叉树>#二叉树#</a>
+</code></pre></td></tr></table></div></div></div><footer class=post-footer><div class=post-tags><a href=/tags/%e4%ba%8c%e5%8f%89%e6%a0%91 rel=tag title=二叉树>#二叉树#</a>
 <a href=/tags/%e7%ae%97%e6%b3%95 rel=tag title=算法>#算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/wechat.jpg width=129px height=129px><div style=text-align:center>交个朋友@_@</div></div><div class=article-copyright-info><p><span>声明：</span>二叉树从0到1</p><p><span>链接：</span>https://yinan-hong.github.io/post/binarytree/</p><p><span>作者：</span>兔楠</p><p><span>声明： </span>本站文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/3.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，打赏可以随意 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');qr.style.display==='none'?qr.style.display='block':qr.style.display='none'">
 <span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.jpg alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.jpg alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://yinan-hong.github.io/post/huffmantree/ rel=next title=最优二叉树和赫夫曼编码><i class="fa fa-chevron-left"></i> 最优二叉树和赫夫曼编码</a></div><div class="post-nav-prev post-nav-item"><a href=https://yinan-hong.github.io/post/workersday/ rel=prev title=该关注的不止是处长体验外卖员生活>该关注的不止是处长体验外卖员生活
 <i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target=post-toc-wrap>文章目录</li><li class=sidebar-nav-overview data-target=site-overview>站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/img/headpic.jpg alt=兔楠><p class=site-author-name itemprop=name>兔楠</p><p class="site-description motion-element" itemprop=description>凡是过往，皆为序章</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>15</span>
@@ -918,4 +1682,4 @@ GitHub</a></span></div><div class="links-of-blogroll motion-element links-of-blo
 <a href=https://www.github.com style=font-weight:700 target=_blank>Github</a></span>
 <span class=separator-line>/</span>
 <span class=license-num><a href=http://beian.miit.gov.cn target=_blank>粤ICP备no_such_thing号</a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i>
-<span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.main').css('padding-bottom'),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}}),$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100)})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=$('.header-inner').height(),d=$('.sidebar-inner').height(),a=c+d+50,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('height',a+50),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initScrollSpy(),initAffix(),initTOCDimension(),$('.post-body').viewer(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script><script src=//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js></script><script type=text/javascript>new Waline({el:'#wcomments',visitor:!0,placeholder:' 评论功能仍在开发中，暂未上线... ',requiredFields:['nick','mail'],serverURL:"https://bwc-r7t6uo7zv-yinan-hong.vercel.app",lang:"zh-cn"})</script><script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6091f652e3a51633"></script><script>(function(a,e,f,g,b,c,d){a.DaoVoiceObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,c.charset="utf-8",d.parentNode.insertBefore(c,d)})(window,document,"script",('https:'==document.location.protocol?'https:':'http:')+"//widget.daovoice.io/widget/Your DaoVoiceId.js","daovoice")</script><script type=text/javascript>$(function(){document.body.clientWidth>800&&(daovoice('init',{app_id:"Your DaoVoiceId"}),daovoice('update'))})</script></body></html>
+<span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function getCntViewHeight(){var b=$('#content').height(),a=$(window).height(),c=b>a?b-a:$(document).height()-a;return c}function getScrollbarWidth(){var a=$('<div />').addClass('scrollbar-measure').prependTo('body'),b=a[0],c=b.offsetWidth-b.clientWidth;return a.remove(),c}function registerBackTop(){var b=50,a=$('.back-to-top');$(window).on('scroll',function(){var d,e,f,c,g;a.toggleClass('back-to-top-on',window.pageYOffset>b),d=$(window).scrollTop(),e=getCntViewHeight(),f=d/e,c=Math.round(f*100),g=c>100?100:c,$('#scrollpercent>span').html(g)}),a.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0},800)})}function initScrollSpy(){var a='.post-toc',d=$(a),b='.active-current';d.on('activate.bs.scrollspy',function(){var b=$(a+' .active').last();c(),b.addClass('active-current')}).on('clear.bs.scrollspy',c),$('body').scrollspy({target:a});function c(){$(a+' '+b).removeClass(b.substring(1))}}function initAffix(){var a=$('.header-inner').height(),b=parseInt($('.main').css('padding-bottom'),10),c=a+10;$('.sidebar-inner').affix({offset:{top:c,bottom:b}}),$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100)})}function initTOCDimension(){var a,b;$(window).on('resize',function(){a&&clearTimeout(a),a=setTimeout(function(){var a=document.body.clientHeight-100;updateTOCHeight(a)},0)}),updateTOCHeight(document.body.clientHeight-100),b=getScrollbarWidth(),$('.post-toc').css('width','calc(100% + '+b+'px)')}function updateTOCHeight(a){a=a||'auto',$('.post-toc').css('max-height',a)}$(function(){var b=$('.header-inner').height()+10,c,d,a,e;$('#sidebar').css({'margin-top':b}).show(),c=$('.header-inner').height(),d=$('.sidebar-inner').height(),a=c+d+50,e=$('.content-wrap').height(),e<a&&$('.content-wrap').css('height',a+50),$('.site-nav-toggle').on('click',function(){var a=$('.site-nav'),e=$('.toggle'),b='site-nav-on',f='toggle-close',c=a.hasClass(b),g=c?'slideUp':'slideDown',d=c?'removeClass':'addClass';a.stop()[g]('normal',function(){a[d](b),e[d](f)})}),registerBackTop(),initScrollSpy(),initAffix(),initTOCDimension(),$('.post-body').viewer(),$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active'),$(this).next().removeClass('sidebar-nav-active'),$('.'+$(this).next().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)}),$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active'),$(this).prev().removeClass('sidebar-nav-active'),$('.'+$(this).prev().attr('data-target')).toggle(500),$('.'+$(this).attr('data-target')).toggle(500)})})</script><script src=//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js></script><script type=text/javascript>new Waline({el:'#wcomments',visitor:!0,placeholder:' 评论功能仍在开发中，暂未上线... ',requiredFields:['nick','mail'],serverURL:"https://bwc-r7t6uo7zv-yinan-hong.vercel.app",lang:"zh-cn"})</script><script>(function(){var a=document.createElement('script'),c=window.location.protocol.split(':')[0],b;c==='https'?a.src='https://zz.bdstatic.com/linksubmit/push.js':a.src='http://push.zhanzhang.baidu.com/push.js',b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6091f652e3a51633"></script></body></html>
