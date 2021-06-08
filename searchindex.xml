@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>手撸一颗B树</title><url>https://yinan-hong.github.io/post/btree/</url><categories><category>数据结构</category></categories><tags><tag>数据结构</tag><tag>B树</tag></tags><content type="html"> 本文教大家如何手撸一颗B树。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>手撸一棵B树</title><url>https://yinan-hong.github.io/post/btree/</url><categories><category>数据结构</category></categories><tags><tag>数据结构</tag><tag>B树</tag></tags><content type="html"> 本文教大家如何手撸一棵B树。
 我在网上看到的大多数教程都是上来就丢给你一堆B树的性质特点，简直劝退，本文我会尝试用人能理解的思路介绍一下B树，有代码干货。
 百度百科：
 在计算机科学中，B树（英语：B-tree）是一种自平衡的树，能够保持数据有序。这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。与自平衡二叉查找树不同，B树为系统大块数据的读写操作做了优化。B树减少定位记录时所经历的中间过程，从而加快存取速度。B树这种数据结构可以用来描述外部存储。这种数据结构常被应用在数据库和文件系统的实现上。
 顺便，B树的英文是B-tree（B杠tree），有些人以为B树和B-树（B减树）是两回事，其实都是误会,并没有B减树。
- B树的构成和结构 B树的节点构成 上图展示的就是一颗b树。我们先来看看b树节点的组成。
+ B树的构成和结构 B树的节点构成 上图展示的就是一棵b树。我们先来看看b树节点的组成。
 b树的节点包含以下内容：
 本节点存放的数据（关键字）数组（图中蓝底部分），编号从1开始 指向子节点的指针数组（图中白底部分） 指向父节点的指针（图中未标出）  下图红框框 框出来的就是一个节点。构建b树前需要先给出b树的阶数m，一个节点中最多有m-1个数据和m个子树。为了方便代码实现，我们规定关键字的编号从1开始，子节点的编号从0开始。
 1 2 3 4 5 6 7 8 9 class BTNode { public: int keyNum; // 关键字个数 BTNode* parent; // 指向父节点 int* keys; // 关键字数组，编号从1开始 BTNode** ptr; // 子树指针数组 BTNode(); ~BTNode(); };  B树的数据存储结构 我们看存放32这个数据的节点。在节点内，数据从左到右是由小到大排列。
 在32这个数据左侧的子树，其包含的所有数据都小于32，对于右侧的子树，其包含的数据都大于32。
  B树的操作 B树常见的操作有，搜索，插入，分裂，删除/* todo */。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 class BTree { private: BTNode* root; // 将k和ap分别插入t->key[i+1]和t->ptr[i + 1] void insert(BTNode* t, int i, int k, BTNode* ap); // 在p->key[1...keynum]中查找 k int search(BTNode* t, int k); // 将q->key[s+1...m],q->ptr[s...m]移入新结点ap void split(BTNode* q, int s, BTNode*&amp; ap); // 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针 void newRoot(BTNode*&amp; t, BTNode* q, int x, BTNode* ap); // 在结点t的子结点q的key[i]与key[i+1]之间插入k void insertBT(BTNode*&amp; t, int k, BTNode* q, int i); Result searchBT(BTNode* t, int k); // 在结点t中查找k public: BTree(); ~BTree(); void insertBT(int key); // B-树插入操作 void searchBT(int key); // B-树查找操作 void levelOrder(); // B-树层次遍历 };  手撸一颗B树 讲具体的操作之前我们先手动实现一颗B树，这样方便大家理解B树的数据分布。B树的构建其实就是使用插入操作不断插入数据。给出一组数据21, 45, 65, 25, 31, 52, 55，构建3阶b树。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 class BTree { private: BTNode* root; // 将k和ap分别插入t->key[i+1]和t->ptr[i + 1] void insert(BTNode* t, int i, int k, BTNode* ap); // 在p->key[1...keynum]中查找 k int search(BTNode* t, int k); // 将q->key[s+1...m],q->ptr[s...m]移入新结点ap void split(BTNode* q, int s, BTNode*&amp; ap); // 生成含信息(t, x, ap)的新根结点t*ap, 原t和 ap为子树指针 void newRoot(BTNode*&amp; t, BTNode* q, int x, BTNode* ap); // 在结点t的子结点q的key[i]与key[i+1]之间插入k void insertBT(BTNode*&amp; t, int k, BTNode* q, int i); Result searchBT(BTNode* t, int k); // 在结点t中查找k public: BTree(); ~BTree(); void insertBT(int key); // B-树插入操作 void searchBT(int key); // B-树查找操作 void levelOrder(); // B-树层次遍历 };  手撸一棵B树 讲具体的操作之前我们先手动实现一棵B树，这样方便大家理解B树的数据分布。B树的构建其实就是使用插入操作不断插入数据。给出一组数据21, 45, 65, 25, 31, 52, 55，构建3阶b树。
 前面提到过，m阶b树的节点最多包含m-1个数据和m个子树，所以前三个数据只需按顺序插入到第一个节点。
 插入第三个数据后，节点的数据超过了m-1=2个，这时候就需要对这个节点进行分裂操作。分裂的位置我们取m/2然后向上取整（可以有不同的取法），在这里就是第2个数据45。
 分裂操作：
